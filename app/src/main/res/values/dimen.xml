@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TextSize-->
+    <dimen name="text_size_head_title">24sp</dimen>
+    <dimen name="text_size_head">20sp</dimen>
+    <dimen name="text_size_head_sub">18sp</dimen>
+    <dimen name="text_size_head_medium">17sp</dimen>
+    <dimen name="appbar_text_size_head">18sp</dimen>
+    <dimen name="text_size_head_small">16sp</dimen>
+    <dimen name="text_size_high">15sp</dimen>
+    <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
+    <dimen name="text_size_low_high">13sp</dimen>
+    <dimen name="text_size_low_medium">12sp</dimen>
+    <dimen name="text_size_low">11sp</dimen>
+    <dimen name="text_size_very_low">10sp</dimen>
+    <dimen name="badge_text_size">8sp</dimen>
+
+
+
+
+    <!-- Margin -->
+    <dimen name="margin_high">30dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_default_size">10dp</dimen>
+    <dimen name="margin_default_low">10dp</dimen>
+    <dimen name="margin_very_low">5dp</dimen>
+
+    <!--Padding-->
+    <dimen name="padding_high">30dp</dimen>
+    <dimen name="padding_medium">20dp</dimen>
+    <dimen name="padding_default_low">10dp</dimen>
+    <dimen name="padding_default_size">10dp</dimen>
+    <dimen name="padding_low">8dp</dimen>
+
+
+    <!--Radius-->
+    <dimen name="corner_radius_high">12dp</dimen>
+    <dimen name="radius_medium">8dp</dimen>
+    <dimen name="radius_low">4dp</dimen>
+
+    <!--Elevation-->
+    <dimen name="elevation_high">8dp</dimen>
+    <dimen name="elevation_medium">4dp</dimen>
+
+
+
+</resources>

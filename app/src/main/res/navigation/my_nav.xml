@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/trainees_nav_menu">
+
+    <fragment
+        android:id="@+id/trainees_nav_menu"
+        android:name="com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.view.TraineeListFragment"
+        android:label="fragment_trainee_list"
+        tools:layout="@layout/fragment_trainee_list" />
+    <fragment
+        android:id="@+id/attend_feedback_nav_menu"
+        android:name="com.informed.evaluator.presentation.landingscreen.fragment.myfeedback.view.MyFeedbackFragment"
+        android:label="fragment_my_feedback"
+        tools:layout="@layout/fragment_my_feedback" />
+    <fragment
+        android:id="@+id/messages_nav_menu"
+        android:name="com.informed.evaluator.presentation.landingscreen.fragment.message.view.MessagesFragment"
+        android:label="fragment_messages"
+        tools:layout="@layout/fragment_messages" />
+    <fragment
+        android:id="@+id/attend_download_nav_menu"
+        android:name="com.informed.evaluator.presentation.landingscreen.fragment.download.view.DownloadFragment"
+        android:label="fragment_download"
+        tools:layout="@layout/fragment_download" />
+    <fragment
+        android:id="@+id/myprofile_nav_menu"
+        android:name="com.informed.evaluator.presentation.landingscreen.fragment.myprofile.view.MyProfileFragment"
+        android:label="fragment_my_profile"
+        tools:layout="@layout/fragment_my_profile" />
+</navigation>

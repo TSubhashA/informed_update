@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/trainees_nav_menu"
+        android:icon="@drawable/trainees_selector"
+        android:title="Trainees" />
+    <item
+        android:id="@+id/attend_feedback_nav_menu"
+        android:icon="@drawable/feedback_selector"
+        android:title="My Feedback"/>
+    <item
+        android:id="@+id/messages_nav_menu"
+        android:icon="@drawable/message_selector"
+        android:visible="false"
+        android:title="Messages"/>
+
+    <item
+        android:id="@+id/attend_download_nav_menu"
+        android:icon="@drawable/download_selector"
+        android:title="Download"/>
+    <item
+        android:id="@+id/myprofile_nav_menu"
+        android:icon="@drawable/profile_selector"
+        android:title="My Profile"/>
+
+
+</menu>

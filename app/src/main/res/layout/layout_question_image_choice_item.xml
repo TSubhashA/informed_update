@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="20dp">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:id="@+id/card_view"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/grey0"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:contentPaddingLeft="4dp"
+        app:contentPaddingRight="4dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/topll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/image_view"
+                    android:layout_gravity="center"
+                    android:src="@drawable/melbourne" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp">
+
+                    <TextView
+                        android:id="@+id/option_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:layout_margin="4dp"
+                        android:background="@drawable/box_border_gray"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/padding_default_low"
+                        android:paddingEnd="@dimen/padding_default_low"
+                        android:text="A"
+                        android:textColor="@color/purple"
+                        android:textSize="@dimen/text_size_head_medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingStart="@dimen/padding_default_size"
+                        android:paddingEnd="@dimen/padding_default_size"
+                        android:id="@+id/option_value"
+                        android:text="Malbourne"
+                        android:textColor="@color/purple"
+
+
+                        />
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_margin="6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        app:shimmer_base_alpha="@integer/material_motion_duration_long_1"
+                        app:shimmer_base_color="@color/purple"
+                        app:shimmer_direction="right_to_left"
+                        app:shimmer_duration="1200"
+                        app:shimmer_highlight_alpha="@color/grey2"
+                        app:shimmer_highlight_color="@color/purple"
+                        app:shimmer_repeat_delay="0"
+                        app:shimmer_shape="linear">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="24dp"
+                            android:gravity="center"
+                            android:text="Swipe to add comment"
+                            android:textColor="@color/purple"
+                            android:textSize="16sp" />
+
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <com.informed.evaluator.customviews.SlideToActView
+                        android:id="@+id/slider_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:elevation="0dp"
+                        app:animate_completion="false"
+                        app:animation_duration="250"
+                        app:area_margin="0dp"
+                        app:border_radius="2dp"
+                        app:complete_icon="@android:color/transparent"
+
+                        app:inner_color="@color/purple"
+                        app:outer_color="@android:color/transparent"
+                        app:rotate_icon="false"
+                        app:slider_height="50dp"
+                        app:slider_icon="@drawable/ic_swipe"
+                        app:slider_icon_color="@color/purple_6"
+                        app:slider_reversed="true"
+                        app:text=""
+                        app:text_size="16sp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/comment_saved"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="@dimen/margin_default_low"
+                    android:background="@drawable/box_border_white"
+                    android:padding="@dimen/padding_default_low"
+                    android:text=""
+                    android:textColor="@color/grey2"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comment_option_one_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/option_no_comment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        android:layout_margin="4dp"
+                        android:background="@drawable/box_border_gray"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/padding_default_low"
+                        android:paddingEnd="@dimen/padding_default_low"
+                        android:text="A"
+                        android:textColor="@color/purple"
+                        android:textSize="@dimen/text_size_head_medium" />
+
+
+                    <!--                        <TextView-->
+                    <!--                            android:id="@+id/cancel_comment"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_margin="4dp"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:clickable="true"-->
+                    <!--                            android:gravity="end"-->
+                    <!--                            android:text="Cancel"-->
+                    <!--                            android:textColor="@color/purple" />-->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/cancel_comment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_fi_x"
+                            app:tint="@color/purple" />
+
+                        <ImageButton
+                            android:id="@+id/submit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_check_24"
+                            app:tint="@color/purple" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/_edit_text_ll"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    app:boxStrokeWidth="0dp"
+
+                    app:hintEnabled="false"
+                    app:layout_anchorGravity="bottom|center"
+                    app:startIconTint="@color/grey">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:autofillHints=""
+                        android:background="@drawable/box_border_white"
+                        android:gravity="top"
+                        android:hint="Please add your comment (Optional) \nYou may want to dictate using microphone"
+                        android:imeOptions="actionDone"
+                        android:inputType="textMultiLine"
+                        android:padding="10dp"
+                        android:textColor="@color/grey2" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

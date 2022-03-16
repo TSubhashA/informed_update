@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.evaluatescreens.evaluatereview.view.EvaluateReviewActivity">
+
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/app_bar_layout"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar_layout"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_size"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:text="Review and Confirm"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_head_sub"
+            android:textStyle="bold"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins"
+
+                android:text="Select Evaluation"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_medium"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/box_border_gray"
+                android:fontFamily="@font/poppins"
+                android:padding="12dp"
+                android:text="Select Evaluation"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head_small"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/complexity_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins"
+
+                android:text="Complexity"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_medium"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/box_border_gray"
+                android:fontFamily="@font/poppins"
+                android:padding="12dp"
+                android:text="High"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head_small"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins"
+
+                android:text="Site"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_medium"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/box_border_gray"
+                android:fontFamily="@font/poppins"
+                android:padding="12dp"
+                android:text="Site1"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head_small"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/case_no_layout"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins"
+
+                android:text="Case No"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_medium"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/box_border_gray"
+                android:fontFamily="@font/poppins"
+                android:padding="12dp"
+                android:text="Case No"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head_small"
+
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins"
+
+                android:text="Evaluation Date"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_medium"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/box_border_gray"
+                android:fontFamily="@font/poppins"
+                android:padding="12dp"
+                android:text="June 23, 2021"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head_small"
+
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/margin_default_low"
+
+        android:padding="@dimen/padding_default_low"
+        android:textSize="@dimen/text_size_low_high"
+        android:text="Confirm &amp; Start Evaluation"
+        app:cornerRadius="@dimen/radius_low"
+        app:textAllCaps="false" />
+
+</RelativeLayout>

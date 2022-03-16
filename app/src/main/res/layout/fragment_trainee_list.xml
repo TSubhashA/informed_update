@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#f2f2f2"
+    tools:context=".presentation.landingscreen.attendeeview.fragment.traineeslist.view.TraineeListFragment">
+
+    <RelativeLayout
+        android:id="@+id/action_bar_rll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_default_size"
+        android:elevation="4dp"
+        android:background="@color/white"
+        android:paddingEnd="@dimen/padding_default_size">
+
+        <LinearLayout
+            android:id="@+id/topll"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/microsoft_image" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Trainees"
+                android:textColor="@color/purple"
+                android:textSize="@dimen/appbar_text_size_head"
+                android:fontFamily="@font/poppins_semibold"
+
+                />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_search_vector"
+                android:id="@+id/search_btn"
+                android:layout_gravity="center"
+                android:contentDescription="TODO" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topll"
+            android:id="@+id/search_layout"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/serch_edit_text"
+                app:layout_anchorGravity="bottom|center"
+                app:endIconMode="custom"
+                app:boxStrokeWidth="2dp"
+                app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                app:boxCornerRadiusBottomEnd="@dimen/radius_medium"
+                app:boxStrokeColor="@color/purple"
+                app:startIconDrawable="@drawable/ic_search_vector"
+                app:endIconDrawable="@drawable/ic_fi_x"
+                app:hintEnabled="false"
+                android:padding="8dp"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:hint="Search" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/action_bar_rll"
+        android:text="Trainees"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="@color/black"
+        android:id="@+id/trainee"
+        android:layout_margin="@dimen/margin_default_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/trainee"
+        android:id="@+id/filter_ll"
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:id="@+id/radio_group"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
+
+            <RadioButton
+                android:id="@+id/radio_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/radiobuttonstate"
+                android:textAlignment="center"
+                android:paddingStart="@dimen/padding_default_low"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingEnd="@dimen/padding_default_low"
+                android:layout_margin="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:text="all" />
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_default_low"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingEnd="@dimen/padding_default_low"
+                android:layout_margin="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:button="@android:color/transparent"
+                android:textColor="@color/radiobuttonstate"
+                android:textAlignment="center"
+                android:text="1st Year" />
+
+            <RadioButton
+                android:id="@+id/radio_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_default_low"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingEnd="@dimen/padding_default_low"
+                android:layout_margin="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:button="@android:color/transparent"
+                android:textColor="@color/radiobuttonstate"
+                android:textAlignment="center"
+                android:text="2nd Year" />
+
+            <RadioButton
+                android:id="@+id/radio_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/padding_default_low"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingEnd="@dimen/padding_default_low"
+                android:layout_margin="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:button="@android:color/transparent"
+                android:textColor="@color/radiobuttonstate"
+                android:textAlignment="center"
+                android:text="3rd Year" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_list_trainees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/filter_ll"
+        android:layout_above="@id/progress_bar"
+        tools:listitem="@layout/trainee_list_row" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/purple"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

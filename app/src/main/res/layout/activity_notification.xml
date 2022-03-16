@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.notification.view.NotificationActivity">
+
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/appBarLayout"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout"
+        android:layout_margin="@dimen/margin_default_size"
+        android:id="@+id/recycler_view"
+        tools:listitem="@layout/notification_list_item" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/bottom_btn_layout"
+        android:layout_alignParentBottom="true"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Delete Notification"
+            android:id="@+id/delete_button"
+            android:textAllCaps="false"
+            app:elevation="0dp"
+            android:textSize="@dimen/text_size_medium"
+            android:padding="@dimen/padding_default_low"
+            android:fontFamily="@font/poppins_semibold"
+            app:backgroundTint="@color/purple"
+
+            />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp"
+            android:id="@+id/cancel_delete"
+            android:textSize="@dimen/text_size_medium"
+            android:padding="@dimen/padding_low"
+            android:text="Cancel"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/white"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

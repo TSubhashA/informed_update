@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.evaluatescreens.evaluatedate.view.EvaluateDateActivity">
+
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/app_bar_layout"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_layout"
+        android:layout_marginStart="@dimen/margin_default_low"
+        android:layout_marginTop="@dimen/margin_default_low"
+        android:layout_marginEnd="@dimen/margin_default_low"
+        android:layout_marginBottom="@dimen/margin_default_low"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+
+        android:text="Select Evaluation Date"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_head_sub"
+        android:textStyle="bold" />
+
+
+    <com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker
+        android:layout_width="match_parent"
+        android:id="@+id/single_date_wheeler"
+        android:layout_height="230dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/margin_default_low"
+        android:layout_marginTop="@dimen/margin_default_low"
+        android:layout_marginEnd="@dimen/margin_default_low"
+        android:layout_marginBottom="@dimen/margin_default_low"
+        app:picker_selectedTextColor="@color/purple"
+        app:picker_curved="true"
+        app:picker_textColor="@color/grey"
+        app:picker_cyclic="true"
+
+        app:picker_visibleItemCount="7" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="@dimen/margin_default_low"
+        android:layout_marginTop="@dimen/margin_default_low"
+        android:padding="@dimen/padding_default_low"
+        android:textSize="@dimen/text_size_low_high"
+        android:layout_marginEnd="@dimen/margin_default_low"
+        android:layout_marginBottom="@dimen/margin_default_low"
+        android:text="Next"
+        app:cornerRadius="@dimen/radius_low"
+        app:textAllCaps="false" />
+
+
+
+</RelativeLayout>

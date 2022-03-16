@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey0"
+    tools:context=".presentation.landingscreen.fragment.message.view.MessagesFragment">
+
+    <include
+        layout="@layout/app_bar"
+        android:id="@+id/app_bar_layout"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/search_layout"
+        android:layout_below="@id/app_bar_layout"
+        android:layout_margin="@dimen/margin_default_size"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="15 Members"
+            android:textSize="@dimen/text_size_head_small"
+            android:textColor="@color/black2"
+
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+
+            android:src="@drawable/ic_search_vector"
+
+            android:background="@android:color/transparent"
+
+
+            />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/user_list_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_layout"
+        tools:itemCount="100"
+
+        tools:listitem="@layout/message_list_item" />
+
+
+</RelativeLayout>

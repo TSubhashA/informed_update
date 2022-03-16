@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/padding_default_size">
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:src="@drawable/profile_image"
+            app:civ_border_color="@color/grey"
+            app:civ_border_width="2dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_name"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Darlene Robertson"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_small"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/title_message"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Last Message"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_size_low_medium"
+
+                />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="03/02/2021"
+            android:layout_margin="@dimen/margin_default_size"
+            android:id="@+id/title_date"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_size_low_medium"
+
+            />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:id="@+id/title_next"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:src="@drawable/ic_back_right"
+            android:background="@android:color/transparent"
+
+
+            />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

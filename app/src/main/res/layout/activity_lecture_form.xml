@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey0"
+    tools:context=".presentation.lectureform.view.LectureFormActivity">
+
+    <include
+        android:id="@+id/app_bar_layout"
+        layout="@layout/app_bar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/date_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_layout"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="@dimen/margin_default_size"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingTop="@dimen/padding_default_low"
+        android:paddingBottom="@dimen/padding_default_low"
+        android:text="June 23, 2020 - June 23, 2021"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_fi_calendar" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/date_btn"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:text="Data from 120 Evaluations in 6 months"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_low_medium"
+
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:scrollbars="none"
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginTop="@dimen/margin_default_size"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:layout_marginBottom="@dimen/margin_default_size"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/ll_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_marginTop="@dimen/margin_default_size"
+
+                            android:id="@+id/title_procedure_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Overall score"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+
+                        <LinearLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_default_size"
+                            android:orientation="horizontal">
+
+                            <com.informed.evaluator.customviews.ScoreView
+                                android:id="@+id/score_view"
+                                android:layout_width="85dp"
+                                android:layout_height="85dp"
+                                app:color="@color/red"
+                                app:maxValue="5"
+                                app:scoredValue="4"
+                                />
+
+                            <TextView
+                                android:id="@+id/sub_date"
+                                android:layout_width="wrap_content"
+
+                                android:layout_height="wrap_content"
+
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/poppins"
+                                android:text="Average score of 120 Evaluations in 6 months"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_size_medium" />
+
+                        </LinearLayout>
+
+                        <com.github.mikephil.charting.charts.LineChart
+                            android:id="@+id/chart1"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="160dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="Group By "
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size_small" />
+
+                            <RadioGroup
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/margin_default_size"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <RadioButton
+                                    android:id="@+id/radio_week"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:background="@drawable/radio_chart_selector"
+                                    android:button="@android:color/transparent"
+
+                                    android:checked="true"
+                                    android:gravity="center"
+                                    android:paddingStart="12dp"
+                                    android:paddingEnd="12dp"
+                                    android:text="Week"
+                                    android:textColor="@color/radiobuttonstate"
+                                    android:textSize="@dimen/text_size_small" />
+
+                                <RadioButton
+                                    android:id="@+id/radio_month"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:layout_margin="@dimen/margin_default_size"
+                                    android:background=" @drawable/radio_chart_selector"
+                                    android:button="@android:color/transparent"
+                                    android:gravity="center"
+                                    android:paddingStart="12dp"
+                                    android:paddingEnd="12dp"
+                                    android:text="Month"
+                                    android:textColor="@color/radiobuttonstate"
+                                    android:textSize="@dimen/text_size_small"
+
+                                    />
+
+                                <RadioButton
+                                    android:id="@+id/radio_year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="20dp"
+                                    android:background="@drawable/radio_chart_selector"
+                                    android:button="@android:color/transparent"
+                                    android:gravity="center"
+                                    android:paddingStart="12dp"
+                                    android:paddingEnd="12dp"
+
+                                    android:text="Year"
+                                    android:textColor="@color/radiobuttonstate"
+                                    android:textSize="@dimen/text_size_small" />
+
+
+                            </RadioGroup>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                tools:listitem="@layout/question_list_item" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

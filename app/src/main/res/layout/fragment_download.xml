@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".presentation.landingscreen.fragment.download.view.DownloadFragment">
+
+    <include
+        android:id="@+id/appBarLayout"
+        layout="@layout/app_bar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/appBarLayout"
+
+        android:layout_margin="@dimen/margin_default_size"
+        android:orientation="vertical">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appBarLayout"
+
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_size"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default_size"
+                android:layout_marginEnd="@dimen/margin_default_size"
+                android:background="@drawable/radio_btn_selector_2"
+                android:button="@android:color/transparent"
+                android:checked="true"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Trainees Evaluation"
+                android:gravity="top"
+                android:textColor="@color/radiobuttonstate_2"
+
+                 />
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="@dimen/margin_default_size"
+                 android:background="@drawable/radio_btn_selector_2"
+                android:button="@android:color/transparent"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="top"
+                android:text="My Feedback"
+                android:textColor="@color/radiobuttonstate_2"
+
+               />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:text="Select Trainee or Trainee group"
+            android:layout_marginBottom="4dp"
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/serch_edit_text_evaluator"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:layout_marginBottom="@dimen/margin_default_size"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_high"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="2dp"
+            app:hintEnabled="false"
+            app:layout_anchorGravity="bottom|center"
+
+            app:startIconDrawable="@drawable/ic_search_vector_purple"
+
+            app:startIconTint="@color/purple">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="All Evaluation"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/padding_low"
+                android:textSize="@dimen/text_size_head_small" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:text="Select Evaluation or Evaluation Type"
+
+            android:layout_marginBottom="4dp"
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/serch_edit_text_evaluation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:layout_marginBottom="@dimen/margin_default_size"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_high"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="2dp"
+
+            app:hintEnabled="false"
+            app:layout_anchorGravity="bottom|center"
+
+            app:startIconDrawable="@drawable/ic_search_vector_purple"
+
+            app:startIconTint="@color/purple">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="All Evaluators"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/padding_low"
+                android:textSize="@dimen/text_size_head_small" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:text="Select Evaluator"
+            android:layout_marginBottom="4dp"
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/serch_edit_text_all_evaluator"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:layout_marginBottom="@dimen/margin_default_size"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_high"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="2dp"
+
+            app:hintEnabled="false"
+            app:layout_anchorGravity="bottom|center"
+
+            app:startIconDrawable="@drawable/ic_search_vector_purple"
+
+            app:startIconTint="@color/purple">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="All Evaluators"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/padding_low"
+                android:textSize="@dimen/text_size_head_small" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:layout_marginBottom="4dp"
+
+            android:text="Select Date Range"
+
+
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/serch_edit_text_date"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:layout_marginBottom="@dimen/margin_default_size"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_high"
+            app:boxStrokeColor="@color/purple"
+            app:boxStrokeWidth="2dp"
+            app:hintEnabled="false"
+            app:layout_anchorGravity="bottom|center"
+            app:startIconDrawable="@drawable/ic_fi_calendar"
+
+            app:startIconTint="@color/purple">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:hint="All Evaluators"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/padding_low"
+                android:textSize="@dimen/text_size_head_small" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_size"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="32 Evaluation Found"
+            android:textColor="@color/green"
+            android:textSize="@dimen/text_size_medium"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_download_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_size"
+            android:text="Send Evaluation Data to my Email"
+            app:backgroundTint="@color/purple"
+            app:cornerRadius="8dp"
+            android:layout_alignParentBottom="true"
+
+            android:padding="@dimen/padding_default_low"
+            android:textSize="@dimen/text_size_low_high"
+            app:textAllCaps="false" />
+
+
+    </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

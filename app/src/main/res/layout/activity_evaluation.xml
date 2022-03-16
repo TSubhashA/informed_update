@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    tools:context=".presentation.evaluatescreens.evaluation.view.EvaluationActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="@dimen/elevation_high"
+        android:paddingStart="0dp"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/my_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="0dp"
+            app:contentInsetStart="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                >
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Evaluate Annet"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                                        />
+                <ImageButton
+                    android:id="@+id/action_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/white"
+                    android:src="@drawable/ic_fi_x_circle"
+
+                    />
+
+            </RelativeLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_layout"
+
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:layout_marginBottom="@dimen/margin_default_size"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/padding_default_low">
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+            android:id="@+id/dots_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/margin_default_low"
+            app:dotsColor="@color/purple"
+            app:dotsCornerRadius="@dimen/radius_medium"
+            app:dotsSize="12dp"
+            app:dotsSpacing="2dp"
+            app:dotsWidthFactor="2.5"
+            app:progressMode="true"
+            app:selectedDotColor="@color/purple" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+
+    </LinearLayout>
+
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/btn_layout"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginStart="@dimen/margin_default_low"-->
+    <!--        android:layout_marginTop="6dp"-->
+    <!--        android:layout_marginEnd="@dimen/margin_default_low"-->
+    <!--        android:layout_marginBottom="@dimen/margin_default_low"-->
+
+    <!--        android:orientation="horizontal"-->
+    <!--        android:paddingTop="@dimen/padding_default_low">-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+
+    <!--            android:id="@+id/btn_back"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="@dimen/margin_default_low"-->
+    <!--            android:text="Back"-->
+    <!--            app:strokeColor="@color/purple"-->
+    <!--            app:cornerRadius="@dimen/radius_medium"-->
+    <!--            app:strokeWidth="2dp"-->
+    <!--            app:backgroundTint="@color/white"-->
+    <!--            style="?attr/materialButtonOutlinedStyle"-->
+    <!--            android:padding="@dimen/padding_default_low"-->
+    <!--            android:textSize="@dimen/text_size_medium"-->
+    <!--            app:textAllCaps="false" />-->
+
+    <!--        <com.google.android.material.button.MaterialButton-->
+
+    <!--            android:id="@+id/btn_next"-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="@dimen/margin_default_size"-->
+    <!--            android:text="Skip"-->
+    <!--            app:backgroundTint="@color/purple"-->
+    <!--            app:cornerRadius="@dimen/radius_medium"-->
+    <!--            android:padding="@dimen/padding_default_low"-->
+    <!--            android:textSize="@dimen/text_size_medium"-->
+    <!--            app:textAllCaps="false" />-->
+
+
+    <!--    </LinearLayout>-->
+
+</RelativeLayout>

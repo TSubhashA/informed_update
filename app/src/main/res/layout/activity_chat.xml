@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.chat.view.ChatActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="@dimen/elevation_high"
+        android:paddingStart="0dp"
+        tools:ignore="RtlSymmetry">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/my_tool_bar"
+            android:layout_width="match_parent"
+
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="0dp"
+            app:contentInsetStart="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="start"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_arrow_black" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/margin_default_low"
+                    android:src="@drawable/profile_pic" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/action_bar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="PGY1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_low_high" />
+
+                    <TextView
+                        android:id="@+id/action_bar_sub_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Trainee Group"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_size_very_low" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+
+                        android:id="@+id/stack_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="end"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:orientation="horizontal" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_bar"
+        android:layout_below="@id/app_bar_layout"
+        android:layout_marginStart="@dimen/margin_default_low"
+        android:layout_marginTop="@dimen/margin_default_low"
+        android:layout_marginEnd="@dimen/margin_default_low"
+        android:layout_marginBottom="@dimen/margin_default_low" />
+
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey7"
+        android:orientation="horizontal">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginTop="@dimen/margin_default_size"
+            android:layout_marginBottom="@dimen/margin_default_size"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/grey7"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/chat_message_bg"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/padding_default_low"
+
+                android:paddingEnd="@dimen/padding_default_low"
+                tools:ignore="RtlSymmetry">
+
+                <EditText
+                    android:id="@+id/editTextTextPersonName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="Type Message"
+                    android:inputType="textPersonName"
+                    android:padding="@dimen/padding_default_low" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="6dp"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/padding_default_low"
+                    app:srcCompat="@drawable/ic_attachment" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="6dp"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/padding_default_low"
+                    app:srcCompat="@drawable/ic_camera" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_default_low"
+            android:background="@drawable/send_button_bg"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingTop="@dimen/padding_low"
+            android:paddingBottom="@dimen/padding_low"
+            app:srcCompat="@drawable/ic_send_button"
+            tools:ignore="RtlSymmetry" />
+    </LinearLayout>
+</RelativeLayout>

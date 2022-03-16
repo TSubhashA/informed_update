@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="28dp"
+        android:visibility="gone"
+        android:layout_height="28dp"
+        android:id="@+id/profile_user_image"
+        android:src="@drawable/profile_image"
+        android:scaleType="fitCenter"
+        android:padding="1dp"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/green"
+
+        />
+    <TextView
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:background="@drawable/circle_border_green_white_bg"
+        android:gravity="center"
+        android:id="@+id/text_view"
+
+        />
+
+
+</FrameLayout>

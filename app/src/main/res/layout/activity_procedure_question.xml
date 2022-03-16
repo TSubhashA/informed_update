@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey6"
+    tools:context=".presentation.procedure.view.ProcedureQuestionActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/my_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/padding_default_size"
+            app:contentInsetStart="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/back_btn"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_arrow_black"
+                    />
+
+                <com.informed.evaluator.customviews.ScoreView
+                    android:id="@+id/score_view"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    app:color="@color/green"
+                    app:maxValue="5"
+                    app:scoredValue="4" />
+
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Procedure Name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_medium" />
+
+                    <TextView
+                        android:id="@+id/title_date"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+
+
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="23rd June 2021"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_size_medium" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_layout">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trainee_ll"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:padding="14dp"
+                android:visibility="visible"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default_size"
+
+                    android:text="by"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/text_size_low_high" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/profile_image"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+
+                        android:src="@drawable/mask_group"
+                        app:civ_border_color="@color/green"
+                        app:civ_border_width="2dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/trainee_name"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Guy Hawkins"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_medium"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Trainee 1st year"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_size_small"
+
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:layout_marginEnd="@dimen/margin_default_size"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:background="@drawable/box_border_green"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="4dp"
+                        android:text="1"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_head_sub" />
+
+                    <TextView
+                        android:id="@+id/question_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="4dp"
+                        android:text="Question1"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_head" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:layout_marginEnd="@dimen/margin_default_size"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Resident has appropriate surgical plan based on awareness of patient specific factors (e.g. biometry, pupil size,traum,uveitis)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/question_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_default_size"
+                    app:cardBackgroundColor="@color/purple_2"
+                    app:cardCornerRadius="@dimen/radius_low">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/padding_default_size">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+
+                            android:gravity="center"
+                            android:text="Feedback"
+                            android:textColor="@color/purple_4"
+                            android:textSize="@dimen/text_size_small" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet."
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_small" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_default_size"
+                android:layout_marginBottom="@dimen/margin_default_size"
+                android:background="@color/grey"
+
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:layout_marginEnd="@dimen/margin_default_size"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/number_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:background="@drawable/box_border_green"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="4dp"
+                        android:text="2"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_head_sub" />
+
+                    <TextView
+                        android:id="@+id/question_title_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:fontFamily="@font/poppins_bold"
+                        android:gravity="center"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="4dp"
+                        android:text="Question2"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_head" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/question_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:layout_marginEnd="@dimen/margin_default_size"
+
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Resident has appropriate surgical plan based on awareness of patient specific factors (e.g. biometry, pupil size,traum,uveitis)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_medium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default_size"
+                    android:layout_marginEnd="@dimen/margin_default_size"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+
+
+                            android:text="Options"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_low" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+
+                            android:text="weight"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_low" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginTop="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/box_border_white"
+
+                            android:padding="@dimen/padding_default_size"
+                            android:text="Option 1"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:background="@drawable/box_border_white"
+
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingStart="@dimen/padding_medium"
+                            android:paddingTop="@dimen/padding_default_size"
+                            android:paddingEnd="@dimen/padding_medium"
+                            android:paddingBottom="@dimen/padding_default_size"
+                            android:text="1"
+
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginTop="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:orientation="horizontal"
+
+                        >
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/box_border_white"
+                            android:padding="@dimen/padding_default_size"
+                            android:text="Option 2"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:background="@drawable/box_border_white"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingStart="@dimen/padding_medium"
+                            android:paddingTop="@dimen/padding_default_size"
+                            android:paddingEnd="@dimen/padding_medium"
+                            android:paddingBottom="@dimen/padding_default_size"
+                            android:text="2"
+
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginTop="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/box_border_purple"
+                            android:padding="@dimen/padding_default_size"
+                            android:text="Option 3"
+
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:background="@drawable/box_border_purple"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingStart="@dimen/padding_medium"
+                            android:paddingTop="@dimen/padding_default_size"
+                            android:paddingEnd="@dimen/padding_medium"
+                            android:paddingBottom="@dimen/padding_default_size"
+                            android:text="3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_medium" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginTop="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:orientation="horizontal">
+
+                        <TextView
+
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/box_border_white"
+                            android:padding="@dimen/padding_default_size"
+                            android:text="Option 4"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:background="@drawable/box_border_white"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:paddingStart="@dimen/padding_medium"
+                            android:paddingTop="@dimen/padding_default_size"
+                            android:paddingEnd="@dimen/padding_medium"
+                            android:paddingBottom="@dimen/padding_default_size"
+                            android:text="4"
+                            android:textColor="@color/grey2"
+                            android:textSize="@dimen/text_size_medium" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/margin_default_size"
+                    android:layout_marginBottom="@dimen/margin_default_size"
+                    android:background="@color/grey"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/number_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_default_size"
+                            android:background="@drawable/box_border_green"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center"
+                            android:paddingStart="20dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="20dp"
+                            android:paddingBottom="4dp"
+                            android:text="3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_head_sub" />
+
+                        <TextView
+                            android:id="@+id/question_title_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_default_size"
+                            android:fontFamily="@font/poppins_bold"
+                            android:gravity="center"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="20dp"
+                            android:paddingBottom="4dp"
+                            android:text="Question3"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_size_head" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/question_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginEnd="@dimen/margin_default_size"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:text="Resident has appropriate surgical plan based on awareness of patient specific factors (e.g. biometry, pupil size,traum,uveitis)"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_medium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_default_size"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_default_size"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+
+                                android:text="Options"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_low" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+
+                                android:text="weight"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_low" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:layout_marginTop="@dimen/margin_default_size"
+                            android:layout_marginEnd="@dimen/margin_default_size"
+                            android:orientation="horizontal"
+
+                            >
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/box_border_white"
+
+                                android:padding="@dimen/padding_default_size"
+                                android:text="Option 1"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default_size"
+                                android:background="@drawable/box_border_white"
+
+                                android:fontFamily="@font/poppins_semibold"
+                                android:paddingStart="@dimen/padding_medium"
+                                android:paddingTop="@dimen/padding_default_size"
+                                android:paddingEnd="@dimen/padding_medium"
+                                android:paddingBottom="@dimen/padding_default_size"
+                                android:text="1"
+
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:layout_marginTop="@dimen/margin_default_size"
+                            android:layout_marginEnd="@dimen/margin_default_size"
+                            android:orientation="horizontal"
+
+                            >
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/box_border_white"
+                                android:padding="@dimen/padding_default_size"
+                                android:text="Option 2"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default_size"
+                                android:background="@drawable/box_border_white"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:paddingStart="@dimen/padding_medium"
+                                android:paddingTop="@dimen/padding_default_size"
+                                android:paddingEnd="@dimen/padding_medium"
+                                android:paddingBottom="@dimen/padding_default_size"
+                                android:text="2"
+
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:layout_marginTop="@dimen/margin_default_size"
+                            android:layout_marginEnd="@dimen/margin_default_size"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/box_border_purple"
+                                android:padding="@dimen/padding_default_size"
+                                android:text="Option 3"
+
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_medium" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default_size"
+                                android:background="@drawable/box_border_purple"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:paddingStart="@dimen/padding_medium"
+                                android:paddingTop="@dimen/padding_default_size"
+                                android:paddingEnd="@dimen/padding_medium"
+                                android:paddingBottom="@dimen/padding_default_size"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_medium" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_default_size"
+                            android:layout_marginTop="@dimen/margin_default_size"
+                            android:layout_marginEnd="@dimen/margin_default_size"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/box_border_white"
+                                android:padding="@dimen/padding_default_size"
+                                android:text="Option 4"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/margin_default_size"
+                                android:background="@drawable/box_border_white"
+                                android:fontFamily="@font/poppins_semibold"
+                                android:paddingStart="@dimen/padding_medium"
+                                android:paddingTop="@dimen/padding_default_size"
+                                android:paddingEnd="@dimen/padding_medium"
+                                android:paddingBottom="@dimen/padding_default_size"
+                                android:text="4"
+                                android:textColor="@color/grey2"
+                                android:textSize="@dimen/text_size_medium" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/question_three_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="@dimen/margin_default_size"
+                        android:layout_marginBottom="@dimen/margin_default_size"
+                        app:cardBackgroundColor="@color/purple_2"
+                        app:cardCornerRadius="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Comment"
+                                android:textColor="@color/purple_4"
+                                android:textSize="@dimen/text_size_small" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins"
+                                android:text="Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint."
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size_small" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

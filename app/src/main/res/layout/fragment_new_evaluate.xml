@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+android:layout_marginTop="10dp"
+    tools:context=".presentation.landingscreen.fragment.evaluatelist.view.EvaluatorListFragment">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/search_layout"
+        android:visibility="visible"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/serch_edit_text"
+            app:layout_anchorGravity="bottom|center"
+            app:endIconMode="custom"
+            app:boxStrokeWidth="2dp"
+            app:boxCornerRadiusTopStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusTopEnd="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomStart="@dimen/corner_radius_high"
+            app:boxCornerRadiusBottomEnd="@dimen/corner_radius_high"
+            app:boxStrokeColor="@color/purple"
+            app:startIconDrawable="@drawable/ic_search_vector"
+            app:endIconDrawable="@drawable/ic_fi_x"
+            app:hintEnabled="false"
+            android:padding="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:inputType="text"
+                android:maxLines="1"
+                android:hint="Search" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_list_trainees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:layout_below="@id/search_layout"
+        android:layout_above="@id/progress_bar"
+        tools:listitem="@layout/trainee_list_row" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:indeterminateTint="@color/purple"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

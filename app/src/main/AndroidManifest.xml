@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.informed.evaluator">
+
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <application
+        android:name=".common.BaseApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".presentation.landingscreen.traineeview.view.TraineeLandingActivity"
+            android:exported="false" />
+
+
+
+        <activity
+            android:name=".presentation.fullquestion.view.FullQuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.questiondetail.view.QuestionDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.procedure.view.ProcedureQuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluation.view.EvaluationActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatereview.view.EvaluateReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatedate.view.EvaluateDateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatecase.view.EvaluateCaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatesite.view.EvaluateSelectSiteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatecomplex.view.EvaluateComplexityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.evaluatescreens.evaluatestart.view.EvaluateStartActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible"
+            />
+        <activity
+            android:name=".presentation.lectureform2.view.LectureForm2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.lectureform.view.LectureFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.chat.view.ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.changepassword.view.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.personaldata.view.PersonalDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.traineedetails.view.TraineeDetailsActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".presentation.recentevaluation.view.RecentEvaluationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.notification.view.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.resetpassword.view.ResetPasswordActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="infomed-static.s3-website-us-west-1.amazonaws.com"
+                    android:pathPrefix="/redirect"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.forgetpassword.view.ForgetPasswordActivity"
+            android:exported="true" />
+        <activity
+            android:name=".presentation.login.view.SignInActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".presentation.landingscreen.attendeeview.view.AttendeeLandingActivity"
+            android:exported="true"
+            android:launchMode="singleTop" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

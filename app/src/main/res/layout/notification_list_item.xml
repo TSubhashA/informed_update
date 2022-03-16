@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_default_size"
+        android:id="@+id/card_view"
+
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:background="@android:color/transparent"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_margin="@dimen/margin_default_size">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+
+                    android:src="@drawable/profile_image" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+                        android:layout_marginTop="4dp"
+
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Notification Header"
+                        android:textColor="@color/black"
+
+                        />
+
+
+                    <TextView
+                        android:id="@+id/sub_title"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_default_size"
+
+                        android:fontFamily="@font/poppins"
+                        android:text="You have received a request for evaluation."
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_size_low_medium" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".17"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/img_more_btn"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="end"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_fi_more_horizontal" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins_medium"
+                android:text="3rd Oct"
+                android:textColor="@color/grey" />
+
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</RelativeLayout>
