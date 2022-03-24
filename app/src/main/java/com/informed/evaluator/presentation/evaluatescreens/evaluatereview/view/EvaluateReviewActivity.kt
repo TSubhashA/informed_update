@@ -1,5 +1,6 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatereview.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
@@ -10,10 +11,13 @@ import com.informed.evaluator.R
 import com.informed.evaluator.base.BaseActivity
 import com.informed.evaluator.preference.ConstantKeys
 import com.informed.evaluator.preference.SharedPreference
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationInitiateActivity
 import kotlinx.android.synthetic.main.activity_evaluate_review.*
 
 class EvaluateReviewActivity : BaseActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_review)
@@ -31,10 +35,10 @@ class EvaluateReviewActivity : BaseActivity() {
             startActivity(
                 Intent(
                     this,
-                    EvaluationActivity::class.java
-                )
+                    EvaluationInitiateActivity::class.java
+                ).putExtra("rowItem",intent.getParcelableExtra<RowsItem>("rowItem"))
             )
-            finish()
+
         }
 
     }

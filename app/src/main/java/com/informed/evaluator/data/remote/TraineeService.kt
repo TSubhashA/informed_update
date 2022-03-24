@@ -1,7 +1,7 @@
 package com.informed.evaluator.data.remote
 
 import com.informed.evaluator.network.NetworkModule
-import com.informed.evaluator.presentation.traineedetails.TraineeDetailsResp
+import com.informed.evaluator.presentation.traineedetails.model.TraineeDetailsResp
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

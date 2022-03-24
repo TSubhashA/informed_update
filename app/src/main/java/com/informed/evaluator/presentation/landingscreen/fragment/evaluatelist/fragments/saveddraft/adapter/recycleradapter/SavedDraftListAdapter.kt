@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.R
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.Row
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.RowsItem
 import de.hdodenhof.circleimageview.CircleImageView
 
 class SavedDraftListAdapter(val context: Context) : RecyclerView.Adapter<SavedDraftListAdapter.ViewHolder>() {
 
-    var listData = mutableListOf<Row>()
+    var listData = mutableListOf<RowsItem>()
 
-    fun setData(list: List<Row>) {
+    fun setData(list: List<RowsItem>) {
         addData(listData)
     }
     @SuppressLint("NotifyDataSetChanged")
-    private fun addData(list: List<Row>){
-        listData.addAll(list as MutableList<Row>)
+    private fun addData(list: List<RowsItem>){
+        listData.addAll(list as MutableList<RowsItem>)
         notifyDataSetChanged()
     }
 

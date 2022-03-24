@@ -23,13 +23,19 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.customviews.SlideToActView
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.ChoicesItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
 
 
-class EvaluationOptionMCQAdapter(val context: Context, val interf: CustomListener) :
+class EvaluationOptionMCQAdapter(
+    val context: Context,
+    val interf: CustomListener,
+    param1: QuestionsItem?
+) :
     RecyclerView.Adapter<EvaluationOptionMCQAdapter.ViewHolder>() {
 
 
-    private var data = mutableListOf<String>()
+    private var data = mutableListOf<ChoicesItem?>()
     private var selectedData = -1
     var extendedCard = -1
     var commentPos = -1
@@ -38,9 +44,9 @@ class EvaluationOptionMCQAdapter(val context: Context, val interf: CustomListene
     var isCommentSaved = false
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: MutableList<String>) {
+    fun setData(data: List<ChoicesItem?>?) {
 
-        this.data = data
+        this.data = data as MutableList<ChoicesItem?>
         notifyDataSetChanged()
 
     }
@@ -142,10 +148,10 @@ class EvaluationOptionMCQAdapter(val context: Context, val interf: CustomListene
 
 
         @SuppressLint("ClickableViewAccessibility", "SetTextI18n", "Recycle")
-        fun bind(get: String, position: Int, holder: ViewHolder) {
+        fun bind(get: ChoicesItem?, position: Int, holder: ViewHolder) {
             updateItem(position)
             optionNumber.text = (position + 1).toString()
-            optionValue.text = get
+            optionValue.text = get?.label
             option_no_comment.text = (position + 1).toString()
             setButtonText()
 

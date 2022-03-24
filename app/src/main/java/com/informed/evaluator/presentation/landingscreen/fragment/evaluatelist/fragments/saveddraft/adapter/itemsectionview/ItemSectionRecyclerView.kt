@@ -11,12 +11,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.Row
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.RowsItem
 
 
 class ItemSectionRecyclerView(
     private val context: Context,
-    private val getItemList: () -> MutableList<Row>
+    private val getItemList: () -> MutableList<RowsItem>
 ) : RecyclerView.ItemDecoration() {
 
     private val dividerHeight = dipToPx(context, 0.8f)

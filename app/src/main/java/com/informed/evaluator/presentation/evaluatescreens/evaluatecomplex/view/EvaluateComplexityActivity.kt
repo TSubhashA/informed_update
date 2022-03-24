@@ -1,5 +1,6 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatecomplex.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,12 +11,13 @@ import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.adapter.EvaluateComplexityAdapter
 
 class EvaluateComplexityActivity : BaseActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_complexity)
 
         setTopBar()
-
 
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         val adapter = EvaluateComplexityAdapter(this)
@@ -35,4 +37,5 @@ class EvaluateComplexityActivity : BaseActivity() {
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_black)
     }
+
 }

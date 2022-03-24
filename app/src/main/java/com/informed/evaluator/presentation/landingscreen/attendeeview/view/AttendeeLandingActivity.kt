@@ -27,14 +27,17 @@ import com.informed.evaluator.presentation.landingscreen.fragment.message.view.M
 import com.informed.evaluator.presentation.landingscreen.fragment.myfeedback.view.MyFeedbackFragment
 import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.view.MyProfileFragment
 import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.view.TraineeListFragment
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.view.EvaluatorListFragment
+import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.ImageUpdateCallBack
 import kotlinx.android.synthetic.main.activity_attendee_landing.*
 
 
-class AttendeeLandingActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class AttendeeLandingActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener, ImageUpdateCallBack {
 
     val _traineeListFragment: Fragment = TraineeListFragment()
     val _myFeedbackFragment: Fragment = MyFeedbackFragment()
 //    val _messagesFragment: Fragment = MessagesFragment()
+val _evaluatorListFragment: Fragment = EvaluatorListFragment()
     val _downloadFragment: Fragment = DownloadFragment()
     val _myProfileFragment: Fragment = MyProfileFragment()
     val fm: FragmentManager = supportFragmentManager
@@ -49,14 +52,15 @@ class AttendeeLandingActivity : AppCompatActivity(), BottomNavigationView.OnNavi
         setContentView(R.layout.activity_attendee_landing)
 
         fm.beginTransaction().add(R.id.fragmentContainerView, _myProfileFragment, "5").hide(_myProfileFragment).commit();
-        fm.beginTransaction().add(R.id.fragmentContainerView, _downloadFragment, "4").hide(_downloadFragment).commit();
+        fm.beginTransaction().add(R.id.fragmentContainerView, _evaluatorListFragment, "4").hide(_evaluatorListFragment).commit();
+        fm.beginTransaction().add(R.id.fragmentContainerView, _downloadFragment, "3").hide(_downloadFragment).commit();
 //        fm.beginTransaction().add(R.id.fragmentContainerView, _messagesFragment, "3").hide(_messagesFragment).commit();
         fm.beginTransaction().add(R.id.fragmentContainerView, _myFeedbackFragment, "2").hide(_myFeedbackFragment).commit();
         fm.beginTransaction().add(R.id.fragmentContainerView,_traineeListFragment, "1").commit();
 
         naavigationView=findViewById(R.id.bottom_nav_bar)
         naavigationView.itemIconTintList = null
-        setProfileImageAtBottom()
+//        setProfileImageAtBottom()
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.fragmentContainerView
@@ -74,7 +78,7 @@ class AttendeeLandingActivity : AppCompatActivity(), BottomNavigationView.OnNavi
     }
 
 
-    fun setProfileImageAtBottom() {
+    override fun setProfileImageAtBottom() {
 
         val menu = bottom_nav_bar.menu
         val menuItem = menu.findItem(R.id.myprofile_nav_menu)
@@ -137,6 +141,13 @@ class AttendeeLandingActivity : AppCompatActivity(), BottomNavigationView.OnNavi
               fm.beginTransaction().show(_myProfileFragment).commit();
               active =_myProfileFragment
           }
+
+            R.id.evaluator_nav_menu->{
+                fm.beginTransaction().hide(active).commit()
+                fm.beginTransaction().show(_evaluatorListFragment).commit();
+                active =_evaluatorListFragment
+
+            }
         }
         return true
     }

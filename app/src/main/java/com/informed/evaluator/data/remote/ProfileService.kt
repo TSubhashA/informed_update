@@ -16,7 +16,7 @@ interface ProfileService {
 
     @Multipart
     @POST("gcp/upload-image")
-    suspend fun uploadImage(@Part("file") part: RequestBody): Response<Any>?
+    suspend fun uploadImage(@Part part: MultipartBody.Part): Response<Any>?
 
     companion object {
 

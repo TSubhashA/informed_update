@@ -1,6 +1,7 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +42,8 @@ class EvaluationFinishFragment : Fragment() {
             (activity as EvaluationActivity?)?.backScreen()
         }
         nextButton.setOnClickListener {
+            (activity as EvaluationActivity?)?.changeScreen()
 
-            activity?.finish()
         }
 
 
@@ -50,7 +51,6 @@ class EvaluationFinishFragment : Fragment() {
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             EvaluationFinishFragment().apply {

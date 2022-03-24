@@ -25,7 +25,7 @@ class EvaluateComplexityAdapter(val context: Context): RecyclerView.Adapter<Eval
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 holder.text.setText(compl.get(position))
         holder.itemView.setOnClickListener { context.startActivity(Intent(context,EvaluateSelectSiteActivity::class.java))
-          (context as EvaluateComplexityActivity).finish()
+//          (context as EvaluateComplexityActivity).finish()
         }
     }
 

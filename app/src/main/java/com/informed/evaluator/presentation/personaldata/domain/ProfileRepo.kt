@@ -19,7 +19,7 @@ class ProfileRepo(val prof: ProfileService):IProfileRepo {
         emit(update!!)
     }.flowOn(Dispatchers.IO)
 
-    override suspend fun uploadImage(part: RequestBody): Flow<Response<Any>?> = flow{
+    override suspend fun uploadImage(part: MultipartBody.Part): Flow<Response<Any>?> = flow{
 
         val image=prof.uploadImage(part)
         emit(image)

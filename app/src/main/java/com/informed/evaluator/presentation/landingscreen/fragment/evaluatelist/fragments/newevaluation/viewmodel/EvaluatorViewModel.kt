@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.informed.evaluator.base.BaseViewModel
 import com.informed.evaluator.network.NetworkModule
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.domain.IAttendingListRepo
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.AttendingListResp
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.domain.IAttendingListRepo
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.AttendingListResp
 import com.informed.trainee.data.model.ResultOf
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -45,7 +45,7 @@ class EvaluatorViewModel(val attendRepo: IAttendingListRepo): BaseViewModel() {
                     val jsonAdapter: JsonAdapter<AttendingListResp> = moshi.adapter(AttendingListResp::class.java)
                     //creating json object
                     val data=jsonAdapter.fromJsonValue(it.body()) as AttendingListResp
-                    if (data.data.rows.size == 0) {
+                    if (data.data?.rows?.size == 0) {
                         if (page!=1)
                             page--
                         Log.e(ContentValues.TAG, "changePage: $page")

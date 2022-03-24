@@ -14,10 +14,10 @@ data class Data(
     val id: Int,
     @Json(name = "image_url")
     val imageUrl: String,
-    @Json(name = "is_removed")
-    val isRemoved: Boolean,
-    @Json(name = "name")
-    val name: String,
+    @Json(name = "first_name")
+    val firstName: String,
+    @Json(name = "last_name")
+    val lastName: String,
     @Json(name = "otp")
     val otp: Any?,
     @Json(name = "phone")

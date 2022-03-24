@@ -1,7 +1,7 @@
 package com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.domain
 
 import com.informed.evaluator.data.remote.TraineeService
-import com.informed.evaluator.presentation.traineedetails.TraineeDetailsResp
+import com.informed.evaluator.presentation.traineedetails.model.TraineeDetailsResp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

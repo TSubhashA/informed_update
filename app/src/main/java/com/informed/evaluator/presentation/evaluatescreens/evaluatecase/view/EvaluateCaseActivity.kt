@@ -1,5 +1,6 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatecase.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -11,15 +12,17 @@ import com.informed.evaluator.presentation.evaluatescreens.evaluatedate.view.Eva
 import kotlinx.android.synthetic.main.activity_evaluate_case.*
 
 class EvaluateCaseActivity : BaseActivity() {
+
+    var fa: Activity? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_case)
-
+fa=this
         setTopBar()
 
         btn_next.setOnClickListener {
             startActivity(Intent(this,EvaluateDateActivity::class.java))
-        finish()
+//        finish()
         }
 
     }

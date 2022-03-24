@@ -1,6 +1,7 @@
 package com.informed.evaluator.presentation.login.view
 
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import com.informed.evaluator.presentation.login.viewmodel.SignInViewModel
 import com.informed.evaluator.utils.CustomProgressDialogue
 import com.informed.evaluator.utils.isValidEmail
 import com.informed.evaluator.utils.showToast
+import com.informed.trainee.data.model.Error2
 import com.informed.trainee.data.model.ResultOf
 import com.wajahatkarim3.easyvalidation.core.view_ktx.minLength
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
@@ -30,9 +32,17 @@ class SignInActivity : AppCompatActivity() {
     lateinit var prog: CustomProgressDialogue
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.e(TAG, "onCreate: ${SharedPreference().getValueString(ConstantKeys.EMAIL)}" )
+        if (SharedPreference().getValueString(ConstantKeys.EMAIL)!=null)
+            onLoginSucces()
         super.onCreate(savedInstanceState)
+
+
+
         setContentView(R.layout.activity_signin)
         prog = CustomProgressDialogue(this)
+
+
 
         login_username.editText?.setText("karan@yopmail.com")
         login_password.editText?.setText("Test@123")
@@ -62,22 +72,21 @@ class SignInActivity : AppCompatActivity() {
     }
 
 
-    fun onLoginSucces() {
+    private fun onLoginSucces() {
         if (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE,false))
-            startActivity(Intent(this, AttendeeLandingActivity::class.java))
+            startActivity(Intent(this, AttendeeLandingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
         else //if (SharedPreference().getValueString(ConstantKeys.USER_ROLE)=="trainee")
-            startActivity(Intent(this, TraineeLandingActivity::class.java))
-//    else
-//        showToast("UnAuthorised access")
+            startActivity(Intent(this, TraineeLandingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+        finish()
     }
 
-    fun observeSignIn() {
+    private fun observeSignIn() {
         val signModule = SignInRequest(
             login_username.editText?.text.toString(),
             login_password.editText?.text.toString()
         )
 
-        signVM.getSignInResult(signModule).observe(this, {
+        signVM.getSignInResult(signModule).observe(this) {
 
             when (it) {
                 is ResultOf.Progress -> {
@@ -94,17 +103,21 @@ class SignInActivity : AppCompatActivity() {
                     Log.e("Login : ", it.message.toString())
                     showToast(it.message!!)
                 }
-                is ResultOf.Failed -> {}
+                is ResultOf.Failed -> {
+                    it.value as Error2
+
+                    showToast(it.value.message)
+                }
             }
 
-        })
+        }
 
 
     }
 
 
     fun observeUserRole() {
-        signVM.getUserRole("3").observe(this, {
+        signVM.getUserRole("3").observe(this) {
 
             when (it) {
 //                is ResultOf.Progress -> if(it.loading) pd.show() else pd.dismiss()
@@ -118,24 +131,26 @@ class SignInActivity : AppCompatActivity() {
                     Log.e("Login : ", it.message.toString())
                     showToast(it.message!!)
                 }
-                is ResultOf.Failed -> {}//TOD
-                is ResultOf.Progress -> {} //TOD
+                is ResultOf.Failed -> {
+                }//TOD
+                is ResultOf.Progress -> {
+                } //TOD
             }
 
 
-        })
+        }
 
 
     }
 
 
-    fun isValidUser(): Boolean {
+    private fun isValidUser(): Boolean {
 
         if (login_username.editText?.nonEmpty() == false) {
             login_username.error = "Email ID cant be blank"
             return false
         } else login_username.error = null
-        if (login_username.editText?.text.toString().isValidEmail() == false) {
+        if (!login_username.editText?.text.toString().isValidEmail()) {
             login_username.error = "Email ID is Not Valid"
             return false
         } else login_username.error = null

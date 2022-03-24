@@ -24,11 +24,12 @@ import com.informed.evaluator.preference.SharedPreference
 import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.view.MyProfileFragment
 import com.informed.evaluator.presentation.landingscreen.traineeview.fragment.download.view.TraineeDownloadFragment
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.view.EvaluatorListFragment
+import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.ImageUpdateCallBack
 import com.informed.evaluator.presentation.landingscreen.traineeview.fragment.myfeedback.view.TraineeFeedbackFragment
 
 import kotlinx.android.synthetic.main.activity_trainee_landing.*
 
-class TraineeLandingActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItemSelectedListener {
+class TraineeLandingActivity : AppCompatActivity(),  BottomNavigationView.OnNavigationItemSelectedListener, ImageUpdateCallBack {
 
     val _evaluatorListFragment: Fragment = EvaluatorListFragment()
     val _myFeedbackFragment: Fragment = TraineeFeedbackFragment()
@@ -54,7 +55,7 @@ class TraineeLandingActivity : AppCompatActivity(),  BottomNavigationView.OnNavi
 
         naavigationView=findViewById(R.id.bottom_nav_bar)
         naavigationView.itemIconTintList = null
-        setProfileImageAtBottom()
+//        setProfileImageAtBottom()
 
         val navHostFragment = supportFragmentManager.findFragmentById(
             R.id.fragmentContainerView
@@ -70,7 +71,7 @@ class TraineeLandingActivity : AppCompatActivity(),  BottomNavigationView.OnNavi
     }
 
 
-    fun setProfileImageAtBottom() {
+    override fun setProfileImageAtBottom() {
 
         val menu = bottom_nav_bar.menu
         val menuItem = menu.findItem(R.id.myprofile_nav_menu)

@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
+import org.json.JSONObject
+import java.lang.Error
 
 class SignInViewModel(val signInRepo: ISignInRepo) : BaseViewModel() {
 
@@ -31,6 +33,7 @@ class SignInViewModel(val signInRepo: ISignInRepo) : BaseViewModel() {
                 .catch { emit(ResultOf.Failure(it.message, it)) }
                 .collect {
                     if (it != null) {
+                        if (it.isSuccessful)
                         saveData(it.body()?.let { it1 ->
                             NetworkModule.convertResponse(
                                 SignInResponse::class.java,
@@ -48,11 +51,15 @@ class SignInViewModel(val signInRepo: ISignInRepo) : BaseViewModel() {
                                 })
                             } else {
                                 Log.d(" Failed : ", "${it.body()}")
+                                Log.d(" Failed error : ", "${it.errorBody()?.source()}")
                                 ResultOf.Failed(
+
                                     NetworkModule.convertResponse(
-                                        ErrorResponse::class.java,
-                                        it.body()!!
+                                        com.informed.trainee.data.model.Error2::class.java,
+                                    it.errorBody()?.source()!!
                                     )
+
+
                                 )
                             }
                         )
@@ -80,7 +87,7 @@ class SignInViewModel(val signInRepo: ISignInRepo) : BaseViewModel() {
             value.data.roles[0]?.token.toString()
         )
         SharedPreference().setString(ConstantKeys.IMAGE_URL, value.data.imageUrl.toString())
-        SharedPreference().setString(ConstantKeys.NAME, value.data.name.toString())
+        SharedPreference().setString(ConstantKeys.FIRSTNAME, value.data.name.toString())
         SharedPreference().setString(ConstantKeys.EMAIL, value.data.email)
         SharedPreference().setString(ConstantKeys.ID, value.data.id.toString())
         SharedPreference().setString(ConstantKeys.MOBILE, value.data.phone.toString())

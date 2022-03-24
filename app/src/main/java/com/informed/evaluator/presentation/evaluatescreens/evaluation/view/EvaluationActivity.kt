@@ -1,27 +1,26 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluation.view
 
-import android.app.AlertDialog
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.ImageButton
-import android.widget.LinearLayout
 import android.widget.TextView
 
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
 import com.informed.evaluator.base.BaseActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.adapter.EvaluationPagerAdapter
+import com.informed.evaluator.presentation.login.view.SignInActivity
 import com.informed.evaluator.utils.CustomDialogue
-import com.informed.evaluator.utils.showToast
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 
 
 class EvaluationActivity : BaseActivity() {
 
-     lateinit var pager: ViewPager2
+    lateinit var pager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +28,17 @@ class EvaluationActivity : BaseActivity() {
 
         setTopBar()
 
-         pager = findViewById(R.id.viewPager) as ViewPager2
-        val adapter=EvaluationPagerAdapter(this)
+        val data = intent.getParcelableExtra<RowsItem>("rowItem")
+
+
+        pager = findViewById<ViewPager2>(R.id.viewPager)
+        val adapter = EvaluationPagerAdapter(this, data)
         pager.adapter = adapter
 
         val dotsIndicator = findViewById<WormDotsIndicator>(R.id.dots_indicator)
         dotsIndicator.setViewPager2(pager)
 
-          pager.setUserInputEnabled(false);
+        pager.isUserInputEnabled = false
 
 //        btn_back.setOnClickListener(View.OnClickListener {
 //            if (pager.currentItem != 0) pager.setCurrentItem(
@@ -74,12 +76,12 @@ class EvaluationActivity : BaseActivity() {
 
     private fun setTopBar() {
 
-        val toolbar = findViewById(R.id.my_tool_bar) as MaterialToolbar
-        toolbar.setTitle("")
+        val toolbar = findViewById<MaterialToolbar>(R.id.my_tool_bar)
+        toolbar.title = ""
         val text = toolbar.findViewById(R.id.title) as TextView
 
-        text.text="Evaluate Annet"
-        val btn=toolbar.findViewById(R.id.action_cancel) as ImageButton
+        text.text = "Evaluate Annet"
+        val btn = toolbar.findViewById(R.id.action_cancel) as ImageButton
 
         btn.setOnClickListener {
 //            showToast("Hello")
@@ -94,14 +96,33 @@ class EvaluationActivity : BaseActivity() {
 
     }
 
-      fun changeScreen(){
-         if (pager.getCurrentItem() < pager.getAdapter()?.itemCount!!)
-             pager.setCurrentItem(pager.getCurrentItem() + 1)
-     }
+    fun changeScreen() {
+        Log.e(
+            TAG,
+            "changeScreen: CITem - ${pager.currentItem} , totalItem - ${pager.adapter?.itemCount}"
+        )
 
-     fun backScreen() {
-         if (pager.getCurrentItem() !=0)
-             pager.setCurrentItem(pager.getCurrentItem() - 1)
-     }
+        if (pager.currentItem == pager.adapter?.itemCount!! - 1) {
+            val intent = Intent(this, SignInActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            finish()
+//            EvaluationInitiateActivity.fa?.finish()
 
- }
+
+            startActivity(intent)
+        }
+
+        if (pager.currentItem < pager.adapter?.itemCount!!)
+            pager.currentItem = pager.currentItem + 1
+
+
+    }
+
+    fun backScreen() {
+        if (pager.currentItem != 0)
+            pager.currentItem = pager.currentItem - 1
+        else
+            finish()
+    }
+
+}

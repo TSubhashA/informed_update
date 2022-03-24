@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.RowsItem
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.saveddraft.adapter.itemsectionview.SectionHeaderViewHolder
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.Row
 
 
 class ItemSectionRecyclerView(
     private val context: Context,
-    private val getItemList: () -> MutableList<Row>
+    private val getItemList: () -> MutableList<RowsItem>
 ) : RecyclerView.ItemDecoration() {
 
     private val dividerHeight = dipToPx(context, 0.8f)
@@ -60,7 +60,7 @@ class ItemSectionRecyclerView(
         val currentModel = getItemList()[position]
         val previousModel = getItemList()[position - 1]
 
-        if (currentModel.name?.first() != previousModel.name?.first())
+        if (currentModel.firstName?.first() != previousModel.firstName?.first())
             outRect.top = sectionItemHeight
         else {
             outRect.top = dividerHeight
@@ -77,10 +77,10 @@ class ItemSectionRecyclerView(
             val position: Int = parent.getChildAdapterPosition(childView)
             val itemModel = getItemList()[position]
 
-            if (getItemList().isNotEmpty() && (0 == position || itemModel.name?.first() != getItemList()[position - 1].name?.first())) {
+            if (getItemList().isNotEmpty() && (0 == position || itemModel.firstName?.first() != getItemList()[position - 1].firstName?.first())) {
 
                 val top = childView.top - sectionItemHeight
-                drawSectionView(c, itemModel.name?.first().toString(), top)
+                drawSectionView(c, itemModel.firstName?.first()?.toUpperCase().toString(), top)
 
             }
 

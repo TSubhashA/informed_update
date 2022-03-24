@@ -20,18 +20,23 @@ import com.informed.evaluator.R
 import com.informed.evaluator.preference.ConstantKeys
 import com.informed.evaluator.preference.SharedPreference
 import com.informed.evaluator.presentation.changepassword.view.ChangePasswordActivity
+import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.ImageUpdateCallBack
 import com.informed.evaluator.presentation.login.view.SignInActivity
 import com.informed.evaluator.presentation.notification.view.NotificationActivity
 import com.informed.evaluator.presentation.personaldata.view.PersonalDataActivity
 
 
 class MyProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
+lateinit var profileImage:ImageView
+lateinit var imageCallback:ImageUpdateCallBack
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        imageCallback=activity as ImageUpdateCallBack
+
     }
+
 
     @SuppressLint("UnsafeOptInUsageError")
     override fun onCreateView(
@@ -39,9 +44,10 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_my_profile, container, false)
         val toolbar = view.findViewById(R.id.my_tool_bar) as MaterialToolbar
-        toolbar.setTitle("")
+        toolbar.title = ""
         val text = toolbar.findViewById(R.id.action_bar_title) as TextView
         text.text = "My Profile"
 
@@ -49,16 +55,16 @@ class MyProfileFragment : Fragment() {
         val noticationText = view.findViewById(R.id.profile_noti_text) as TextView
         val notication = view.findViewById(R.id.profile_notification) as CardView
         val changePassword = view.findViewById(R.id.profile_change_password) as CardView
-        val profile_logout = view.findViewById(R.id.profile_logout) as CardView
-        val profile_image = view.findViewById(R.id.profile_image) as ImageView
+        val profileLogout = view.findViewById(R.id.profile_logout) as CardView
+         profileImage = view.findViewById(R.id.profile_image) as ImageView
 
-        Glide.with(profile_image.context)
-            .load(SharedPreference().getValueString(ConstantKeys.IMAGE_URL))
-            .into(profile_image)
+        setImage()
+
+
 
         val badgeDrawable = BadgeDrawable.create(requireContext())
 
-        badgeDrawable.setBackgroundColor(Color.RED)
+        badgeDrawable.backgroundColor = Color.RED
         badgeDrawable.badgeGravity = BadgeDrawable.TOP_END
 
 //        badgeDrawable.setHorizontalOffset(350)
@@ -66,24 +72,25 @@ class MyProfileFragment : Fragment() {
         if (n > 0)
             badgeDrawable.number = n
 
-        noticationText.getViewTreeObserver()
-            .addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-                @SuppressLint("UnsafeOptInUsageError")
-                override fun onGlobalLayout() {
-                    BadgeUtils.attachBadgeDrawable(badgeDrawable, noticationText);
-                    noticationText.viewTreeObserver.removeOnGlobalLayoutListener(this)
-                }
-            })
+        noticationText.viewTreeObserver
+            .addOnGlobalLayoutListener {
+                BadgeUtils.attachBadgeDrawable(badgeDrawable, noticationText)
+                //                    noticationText.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
 
-        profile_logout.setOnClickListener {
+        profileLogout.setOnClickListener {
             SharedPreference().clearSharedPreference()
-            startActivity(
+
+            activity?.startActivity(
                 Intent(
                     requireContext(),
                     SignInActivity::class.java
                 )
-                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             )
+            activity?.finish()
+
         }
 
         personalData.setOnClickListener {
@@ -113,6 +120,21 @@ class MyProfileFragment : Fragment() {
             )
         }
         return view
+    }
+
+    fun setImage(){
+        Glide.with(profileImage.context)
+            .load(SharedPreference().getValueString(ConstantKeys.IMAGE_URL))
+            .into(profileImage)
+
+        imageCallback.setProfileImageAtBottom()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setImage()
+
     }
 
 

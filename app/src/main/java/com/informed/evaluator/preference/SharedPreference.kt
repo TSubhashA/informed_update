@@ -1,8 +1,10 @@
 package com.informed.evaluator.preference
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import androidx.core.content.edit
 import com.informed.evaluator.common.BaseApp
 
@@ -33,8 +35,11 @@ class SharedPreference {
     }
 
     fun clearSharedPreference() {
+        Log.e(TAG, "clearSharedPreference: clearing" )
+
         sharedPref.edit {
-            clear()
+            this.clear()
+            this.apply()
         }
     }
 

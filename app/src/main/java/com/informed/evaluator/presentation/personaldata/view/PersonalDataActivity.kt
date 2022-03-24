@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
@@ -24,6 +25,7 @@ import com.informed.evaluator.presentation.personaldata.model.ImageUploadRespons
 import com.informed.evaluator.presentation.personaldata.model.ProfileEditRequest
 import com.informed.evaluator.presentation.personaldata.viewmodel.ProfileVMFactory
 import com.informed.evaluator.presentation.personaldata.viewmodel.ProfileViewModel
+import com.informed.evaluator.utils.CircularProgres
 import com.informed.evaluator.utils.CustomProgressDialogue
 import com.informed.evaluator.utils.showToast
 import com.informed.trainee.data.model.ResultOf
@@ -83,15 +85,20 @@ class PersonalDataActivity : BaseActivity() {
                     Log.e(TAG, "imageObserver: failure ${it.message}" )
                 }
                 is ResultOf.Progress -> {
+                    if (it.loading) cPD.show() else cPD.dismiss()
                 }
                 is ResultOf.Success -> {
+
+
+
                     it.value as ImageUploadResponse
                     Glide.with(this)
                         .load(it.value.data?.url)
+                        .placeholder(CircularProgres.imageProgress(this))
                         .into(profile_image)
                     Log.e(TAG, "startActivityresult: ${it}")
                     this.showToast(it.toString())
-                    selectedImageUri = it.toString()
+                    selectedImageUri = it.value.data?.url
                 }
             }
 
@@ -105,7 +112,7 @@ class PersonalDataActivity : BaseActivity() {
             .load(SharedPreference().getValueString(ConstantKeys.IMAGE_URL))
             .into(profile_image)
         Log.e(TAG, "setData: dataSet")
-        personal_tainee_name.editText?.setText(SharedPreference().getValueString(ConstantKeys.NAME))
+        personal_tainee_name.editText?.setText(SharedPreference().getValueString(ConstantKeys.FIRSTNAME))
         personal_tainee_email.editText?.setText(SharedPreference().getValueString(ConstantKeys.EMAIL))
         personal_tainee_phone.editText?.setText(SharedPreference().getValueString(ConstantKeys.MOBILE))
 
@@ -121,13 +128,16 @@ class PersonalDataActivity : BaseActivity() {
     private fun observeEditing() {
         val phone = personal_tainee_phone.editText?.text.toString()
         val name = personal_tainee_name.editText?.text.toString()
+        val ssplit=name.split(" ")
+        val firstName=ssplit[0]
+        val lastName= if(ssplit.size > 1) ssplit[1] else " "
         val status = "active"
         val image_url =
             if (selectedImageUri != null) selectedImageUri else SharedPreference().getValueString(
                 ConstantKeys.IMAGE_URL
             )
 
-        val request = ProfileEditRequest(image_url.toString(), name, phone, status)
+        val request = ProfileEditRequest(image_url.toString(), firstName, lastName, phone, status)
 
         profVM.editProfile(request).observe(this) {
             when (it) {
@@ -158,14 +168,6 @@ class PersonalDataActivity : BaseActivity() {
     }
 
 
-    fun Uri.getName(context: Context): String {
-        val returnCursor = context.contentResolver.query(this, null, null, null, null)
-        val nameIndex = returnCursor?.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-        returnCursor?.moveToFirst()
-        val fileName = returnCursor?.getString(nameIndex!!)
-        returnCursor?.close()
-        return fileName!!
-    }
 
     fun checkPermission(): Boolean {
         if (ContextCompat.checkSelfPermission(
@@ -181,5 +183,6 @@ class PersonalDataActivity : BaseActivity() {
             return true
 
     }
+
 
 }

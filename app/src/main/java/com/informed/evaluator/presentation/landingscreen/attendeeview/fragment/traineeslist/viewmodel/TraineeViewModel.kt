@@ -125,15 +125,12 @@ class TraineeViewModel(val trainRepo: ITraineeListRepo) : BaseViewModel() {
                         ResultOf.Success(it)
 
                     } else {
-
                         ResultOf.Failed(it)
-
                     }
                 )
             }
 
         emit(ResultOf.Progress(false))
-
     }
 
 }

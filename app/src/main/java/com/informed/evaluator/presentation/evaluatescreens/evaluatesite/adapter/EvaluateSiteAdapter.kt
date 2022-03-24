@@ -13,10 +13,12 @@ import com.informed.evaluator.preference.SharedPreference
 import com.informed.evaluator.presentation.evaluatescreens.evaluatecase.view.EvaluateCaseActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatedate.view.EvaluateDateActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatesite.view.EvaluateSelectSiteActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 
-class EvaluateSiteAdapter(val context: Context) : RecyclerView.Adapter<EvaluateSiteAdapter.ViewHolder>() {
+class EvaluateSiteAdapter(val context: Context,val data: RowsItem?) :
+    RecyclerView.Adapter<EvaluateSiteAdapter.ViewHolder>() {
 
-    val compl= arrayListOf("Easy","Medium","Difficult","Extreamly Difficult")
+    val compl = arrayListOf("Easy", "Medium", "Difficult", "Extreamly Difficult")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -27,20 +29,18 @@ class EvaluateSiteAdapter(val context: Context) : RecyclerView.Adapter<EvaluateS
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.text.setText(compl.get(position))
         holder.itemView.setOnClickListener {
-            if  (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE,false))
-            context.startActivity(
-            Intent(context,
-                EvaluateCaseActivity::class.java)
-        )
-            else
-                context.startActivity(
-                    Intent(context,
-                        EvaluateDateActivity::class.java)
-                )
 
+            val intent = Intent(
+                context,
+                if (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE, false))
+                    EvaluateCaseActivity::class.java
+                else
+                    EvaluateDateActivity::class.java
+            )
 
-
-            (context as EvaluateSelectSiteActivity).finish()
+            intent.putExtra("rowItem", data)
+            context.startActivity(intent)
+//            (context as EvaluateSelectSiteActivity).finish()
 
         }
     }
@@ -51,7 +51,7 @@ class EvaluateSiteAdapter(val context: Context) : RecyclerView.Adapter<EvaluateS
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var text  = itemView.findViewById(R.id.name) as TextView
+        var text = itemView.findViewById(R.id.name) as TextView
 
     }
 }

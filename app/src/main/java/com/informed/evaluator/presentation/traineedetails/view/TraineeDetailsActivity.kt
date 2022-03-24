@@ -1,5 +1,6 @@
 package com.informed.evaluator.presentation.traineedetails.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,58 +12,54 @@ import com.informed.evaluator.base.BaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.view.EvaluateStartActivity
-import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.Row
+import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.RowsItem
 import com.informed.evaluator.presentation.traineedetails.adapter.ViewPagerAdapter
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 import kotlinx.android.synthetic.main.activity_trainee_details.*
 
 class TraineeDetailsActivity : BaseActivity() {
 
-     lateinit var traineeDetails:Row
+     var traineeDetails:RowsItem?=null
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trainee_details)
 
-        traineeDetails= intent.getSerializableExtra("trainee") as Row
+        traineeDetails= intent.getParcelableExtra<RowsItem>("trainee")
 
-        title_name.text=traineeDetails.name
-       sub_mobile.text=traineeDetails.phone
-        sub_email.text=traineeDetails.email
+        title_name.text=traineeDetails?.firstName +" "+ traineeDetails?.lastName
+       sub_mobile.text=traineeDetails?.phone
+        sub_email.text=traineeDetails?.email
 
         setTopBar()
         setViewPager()
 
-        val searchView=findViewById(R.id.search_button) as SearchView
+        val searchView= findViewById<SearchView>(R.id.search_button)
 
-        searchView.setOnQueryTextFocusChangeListener(object: View.OnFocusChangeListener{
-            override fun onFocusChange(p0: View?, b: Boolean) {
-                if(!b)
-                {
-                    searchView.onActionViewExpanded()
-                    if(searchView.getQuery().toString().length < 1)
-                    {
-                        searchView.onActionViewCollapsed();
-                        feeeback_text.visibility= View.VISIBLE
-                    }
-                    searchView.clearFocus();
-                    feeeback_text.visibility= View.VISIBLE
+        searchView.setOnQueryTextFocusChangeListener { _, b ->
+            if (!b) {
+                searchView.onActionViewExpanded()
+                if (searchView.query.toString().isEmpty()) {
+                    searchView.onActionViewCollapsed()
+                    feeeback_text.visibility = View.VISIBLE
                 }
-                else
-                    feeeback_text.visibility= View.GONE
-            }
-        })
+                searchView.clearFocus()
+                feeeback_text.visibility = View.VISIBLE
+            } else
+                feeeback_text.visibility = View.GONE
+        }
 
         sub_mobile.setOnClickListener {
             val intent=Intent(Intent.ACTION_DIAL)
-            intent.setData(Uri.parse("tel:${sub_mobile.text.toString()}"))
+            intent.data = Uri.parse("tel:${sub_mobile.text.toString()}")
             startActivity(intent)
         }
 
         sub_email.setOnClickListener {
             val intent=Intent(Intent.ACTION_SEND)
             intent.putExtra(Intent.EXTRA_EMAIL,sub_email.text.toString())
-            intent.setType("message/rfc822")
+            intent.type = "message/rfc822"
             startActivity(Intent.createChooser(intent,"Choose an Email Client :"))
         }
 

@@ -11,8 +11,7 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".common.BaseApp"
@@ -22,9 +21,11 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+        <activity
+            android:name=".presentation.evaluatescreens.evaluation.view.EvaluationInitiateActivity"
+            android:exported="false" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -32,10 +33,8 @@
 
         <activity
             android:name=".presentation.landingscreen.traineeview.view.TraineeLandingActivity"
-            android:exported="false" />
-
-
-
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".presentation.fullquestion.view.FullQuestionActivity"
             android:exported="false" />
@@ -48,7 +47,7 @@
         <activity
             android:name=".presentation.evaluatescreens.evaluation.view.EvaluationActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity
             android:name=".presentation.evaluatescreens.evaluatereview.view.EvaluateReviewActivity"
             android:exported="false" />
@@ -67,8 +66,7 @@
         <activity
             android:name=".presentation.evaluatescreens.evaluatestart.view.EvaluateStartActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateVisible"
-            />
+            android:windowSoftInputMode="stateVisible" />
         <activity
             android:name=".presentation.lectureform2.view.LectureForm2Activity"
             android:exported="false" />

@@ -23,7 +23,14 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug{
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -105,13 +112,12 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
 
     //Validation
-
     implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:1.0.1"
 
     implementation "com.github.worker8:RadioGroupPlus:1.0.1"
 
 
-    //
+    // Slide to Detect
 
     implementation "com.ncorti:slidetoact:0.9.0"
 

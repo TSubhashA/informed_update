@@ -15,24 +15,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.view.EvaluateStartActivity
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.Row
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.RowsItem
 import de.hdodenhof.circleimageview.CircleImageView
 
 
 class EvaluatorListAdapter(val context: Context) : RecyclerView.Adapter<EvaluatorListAdapter.ViewHolder>(), Filterable {
 
-     var listData = mutableListOf<Row>()
-     var filtered_list=mutableListOf<Row>()
+     var listData = mutableListOf<RowsItem>()
+     var filtered_list=mutableListOf<RowsItem>()
 
 
-    fun setData(list: List<Row>) {
-        listData = list as MutableList<Row>
+    fun setData(list: List<RowsItem>) {
+        listData = list as MutableList<RowsItem>
         addData(listData)
 
     }
     @SuppressLint("NotifyDataSetChanged")
-    private fun addData(list: List<Row>){
-        filtered_list.addAll(list as MutableList<Row>)
+    private fun addData(list: List<RowsItem>){
+        filtered_list.addAll(list as MutableList<RowsItem>)
         notifyDataSetChanged()
     }
 
@@ -50,9 +50,10 @@ class EvaluatorListAdapter(val context: Context) : RecyclerView.Adapter<Evaluato
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val name = filtered_list.get(position).name
+        val name = filtered_list.get(position).firstName?.capitalize() +" "+ filtered_list.get(position).lastName
         holder.nameTV.setText(name)
-        holder.yearTV.text=filtered_list.get(position).roles[0]?.year.toString()
+        holder.yearTV.text=filtered_list.get(position).roles?.get(0)?.year.toString()
+
         Log.e(TAG, "onBindViewHolder: $name" )
 
         if (filtered_list.get(position).imageUrl != null)
@@ -64,7 +65,7 @@ class EvaluatorListAdapter(val context: Context) : RecyclerView.Adapter<Evaluato
             .into(holder.circleImageV)
 
         holder.itemView.setOnClickListener { context.startActivity(Intent(context,
-            EvaluateStartActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
+            EvaluateStartActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME)) }
     }
 
     override fun getItemCount(): Int {
@@ -80,13 +81,13 @@ class EvaluatorListAdapter(val context: Context) : RecyclerView.Adapter<Evaluato
 
     private val searchFilter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList = mutableListOf<Row?>()
+            val filteredList = mutableListOf<RowsItem?>()
             if (constraint.length == 0) {
                 filteredList.addAll(listData)
             } else {
                 val filterPattern = constraint.toString().trim { it <= ' ' }
                 for (item in listData) {
-                    if (item.name?.contains(filterPattern,true) == true) {
+                    if (item.firstName?.contains(filterPattern,true) == true || item.lastName?.contains(filterPattern,true) == true )  {
                         filteredList.add(item)
                     }
                 }
@@ -100,7 +101,7 @@ class EvaluatorListAdapter(val context: Context) : RecyclerView.Adapter<Evaluato
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
             if  (results.count>0){
                 filtered_list.clear()
-                addData(results.values as List<Row>)
+                addData(results.values as List<RowsItem>)
             }
             else {
                 Log.println(Log.INFO, "Results", "${results.count} ");

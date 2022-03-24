@@ -11,6 +11,8 @@ interface EvaluatorService {
     @GET("admin/attending")
     suspend fun getAttendingList(@Query("page") page:Int,@Query("pageSize")pageSize:Int ): Response<Any>?
 
+
+
     companion object {
 
         var eval: EvaluatorService? = null

@@ -2,10 +2,7 @@ package com.informed.evaluator.presentation.landingscreen.fragment.myprofile.vie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.informed.evaluator.data.remote.EvaluatorService
 import com.informed.evaluator.data.remote.ImageUploadService
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.domain.AttendingListRepo
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.domain.IAttendingListRepo
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.viewmodel.EvaluatorVMFactory
 import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.domain.IImageUploadRepo
 import com.informed.evaluator.presentation.landingscreen.fragment.myprofile.domain.ImageUploadRepo

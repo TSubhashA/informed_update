@@ -8,6 +8,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
 import com.informed.evaluator.base.BaseActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatereview.view.EvaluateReviewActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import kotlinx.android.synthetic.main.activity_evaluate_date.*
 
 class EvaluateDateActivity : BaseActivity() {
@@ -18,8 +19,8 @@ class EvaluateDateActivity : BaseActivity() {
         setTopBar()
 
         btn_next.setOnClickListener {
-            startActivity(Intent(this,EvaluateReviewActivity::class.java))
-        finish()
+            startActivity(Intent(this,EvaluateReviewActivity::class.java).putExtra("rowItem",intent.getParcelableExtra<RowsItem>("rowItem")))
+//        finish()
         }
 
         single_date_wheeler.setIsAmPm(false)

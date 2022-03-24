@@ -1,6 +1,6 @@
 package com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.domain
 
-import com.informed.evaluator.presentation.traineedetails.TraineeDetailsResp
+import com.informed.evaluator.presentation.traineedetails.model.TraineeDetailsResp
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 

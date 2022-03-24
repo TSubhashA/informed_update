@@ -12,6 +12,6 @@ interface IProfileRepo {
 
     suspend fun editProfile(id: Int, request: ProfileEditRequest): Flow<ProfileEditResponse?>
 
-    suspend fun uploadImage(part:RequestBody) : Flow<Response<Any>?>
+    suspend fun uploadImage(part:MultipartBody.Part) : Flow<Response<Any>?>
 
 }

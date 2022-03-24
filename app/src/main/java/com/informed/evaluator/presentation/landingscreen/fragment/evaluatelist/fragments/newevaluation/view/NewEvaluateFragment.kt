@@ -1,6 +1,7 @@
 package com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.view
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,11 +18,11 @@ import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.adapter.EvaluatorListAdapter
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.adapter.itemsectionview.ItemSectionRecyclerView
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.Row
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.AttendingListResp
+import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.model.RowsItem
 
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.viewmodel.EvaluatorVMFactory
 import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.fragments.newevaluation.viewmodel.EvaluatorViewModel
-import com.informed.evaluator.presentation.landingscreen.fragment.evaluatelist.model.AttendingListResp
 import com.informed.evaluator.utils.CustomProgressDialogue
 import com.informed.evaluator.utils.showToast
 import com.informed.trainee.data.model.ResultOf
@@ -135,7 +136,7 @@ class NewEvaluateFragment : Fragment() {
 
     }
 
-    fun setResponseData(rows: List<Row>) {
+    fun setResponseData(rows: List<RowsItem>) {
         adapter.setData(rows)
     }
 
@@ -161,8 +162,13 @@ class NewEvaluateFragment : Fragment() {
                     requireActivity().showToast("Last Page Reached")
                     Log.e(ContentValues.TAG, "observeTraineeList: $it")
                 }
-                is ResultOf.Failed -> requireActivity().showToast("Failed")
-                is ResultOf.Failure -> requireActivity().showToast("Failure")
+                is ResultOf.Failed -> {requireActivity().showToast("Failed")
+                    Log.e(TAG, "observeLivedata: Failed : ${it.value.toString()}" )
+                }
+                is ResultOf.Failure -> {
+                    requireActivity().showToast("Failure")
+                    Log.e(TAG, "observeLivedata: Failure : ${it.message}, - ${it.throwable}" )
+                }
                 is ResultOf.Progress -> {
                     if (scrollFlag) {
                         if (it.loading) bottomProgBar.visibility = View.VISIBLE else {
@@ -177,7 +183,7 @@ class NewEvaluateFragment : Fragment() {
                     it.value as AttendingListResp
                     requireActivity().showToast("Success")
                     setResponseData(
-                        it.value.data.rows
+                        it.value.data?.rows as List<RowsItem>
                     )
                 }
             }

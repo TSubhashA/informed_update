@@ -12,7 +12,7 @@ import android.widget.Filterable
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.informed.evaluator.R
-import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.Row
+import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.RowsItem
 import com.informed.evaluator.presentation.traineedetails.view.TraineeDetailsActivity
 import com.informed.evaluator.utils.showToast
 import de.hdodenhof.circleimageview.CircleImageView
@@ -26,25 +26,25 @@ class TraineeListAdapter(val context: Context) :
     val TAG = "TraineeListAdapter"
 //    var listener: EventListener? = event
 
-    private var peoples: MutableList<Row?>? = null
+    private var peoples: MutableList<RowsItem?>? = null
     var sections: ArrayList<Section> = ArrayList()
 
     class Section {
         var alpha: String? = null
-        var people = mutableListOf<Row?>()
+        var people = mutableListOf<RowsItem?>()
     }
 
-    private fun addSection(people: MutableList<Row?>) {
+    private fun addSection(people: MutableList<RowsItem?>) {
         var alpha = 0.toChar()
         var currentSection: Section? = null
         for (person in people) {
-            Log.e(TAG, "setData: ${person?.name}")
-            if (person?.name?.first() != alpha) {
+            Log.e(TAG, "setData: ${person?.firstName}")
+            if (person?.firstName?.first() != alpha) {
                 if (currentSection != null) {
                     sections.add(currentSection)
                 }
                 currentSection = Section()
-                alpha = person?.name!![0]
+                alpha = person?.firstName!![0]
                 currentSection.alpha = alpha.toString()
             }
             currentSection?.people?.add(person)
@@ -54,8 +54,8 @@ class TraineeListAdapter(val context: Context) :
     }
 
 
-    fun setData(people: MutableList<Row?>) {
-        people.sortBy { it?.name?.first()?.uppercase() }
+    fun setData(people: MutableList<RowsItem?>) {
+        people.sortBy { it?.firstName?.first()?.uppercase() }
         this.peoples = people
         // sort people into buckets by the first letter of last name
         // sort people into buckets by the first letter of last name
@@ -104,6 +104,7 @@ class TraineeListAdapter(val context: Context) :
     ): HeaderViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val v: View = inflater.inflate(R.layout.header_data, parent, false)
+//        v.setBackgroundColor(R.color.d)
         return HeaderViewHolder(v)
     }
 
@@ -115,14 +116,14 @@ class TraineeListAdapter(val context: Context) :
     ) {
         viewHolder as ItemViewHolder
         val s: Section = sections[sectionIndex]
-        val trainee: Row? = s.people.get(itemIndex)
+        val trainee: RowsItem? = s.people.get(itemIndex)
         viewHolder.nameTV.setText(
-            trainee?.name?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+            trainee?.firstName?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
         )
         viewHolder.yearTV.setText(
             trainee?.roles?.get(0)?.year.toString()
         )
-        Log.e(TAG, "onBind : ${trainee?.name}")
+        Log.e(TAG, "onBind : ${trainee?.firstName}")
 
         if (trainee?.imageUrl != null) {
             Glide.with(viewHolder.circleImageV.context)
@@ -158,13 +159,13 @@ class TraineeListAdapter(val context: Context) :
 
     private val Searched_Filter: Filter = object : Filter() {
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList = mutableListOf<Row?>()
+            val filteredList = mutableListOf<RowsItem?>()
             if (constraint.length == 0) {
                 filteredList.addAll(peoples!!)
             } else {
                 val filterPattern = constraint.toString().trim { it <= ' ' }
                 for (item in peoples!!) {
-                    if (item?.name?.contains(filterPattern,true) == true) {
+                    if (item?.firstName?.contains(filterPattern,true) == true || item?.lastName?.contains(filterPattern,true) == true) {
                         filteredList.add(item)
                     }
                 }
@@ -178,7 +179,7 @@ class TraineeListAdapter(val context: Context) :
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
             if  (results.count>0){
             sections.clear()
-            addSection(results.values as MutableList<Row?>)}
+            addSection(results.values as MutableList<RowsItem?>)}
             else {
                 Log.println(Log.INFO, "Results", "${results.count} ");
                 notifyAllSectionsDataSetChanged()            }

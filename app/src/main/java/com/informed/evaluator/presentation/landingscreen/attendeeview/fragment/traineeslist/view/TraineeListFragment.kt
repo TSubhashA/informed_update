@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.adapter.TraineeListAdapter
-import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.Row
+import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.RowsItem
 import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.model.TraineeListResp
 import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.viewmodel.TraineeVMFactory
 import com.informed.evaluator.presentation.landingscreen.attendeeview.fragment.traineeslist.viewmodel.TraineeViewModel
@@ -31,7 +31,6 @@ import com.informed.evaluator.utils.CustomProgressDialogue
 import com.informed.evaluator.utils.showToast
 import com.informed.trainee.data.model.ResultOf
 import kotlinx.android.synthetic.main.fragment_trainee_list.*
-import java.time.Year
 import java.util.*
 
 
@@ -151,12 +150,12 @@ class TraineeListFragment : Fragment()//, TraineeListAdapter.EventListener
         }
     }
 
-    private fun setAdapterData(rows: List<Row?>?) {
+    private fun setAdapterData(rows: List<RowsItem?>?) {
 //        if (searchFlag) {
                 adapter.sections.clear()
 //            searchFlag = false
 //        }
-        adapter.setData(rows as MutableList<Row?>)
+        adapter.setData(rows as MutableList<RowsItem?>)
 
     }
 
@@ -242,33 +241,32 @@ class TraineeListFragment : Fragment()//, TraineeListAdapter.EventListener
     }
 
     fun observeLivedata() {
-        trainVM.dataSource?.observe(viewLifecycleOwner,
-            { it ->
-                when (it) {
-                    is ResultOf.Empty -> {
-                        requireActivity().showToast("Last Page Reached")
-                        Log.e(TAG, "observeTraineeList: $it")
-                    }
-                    is ResultOf.Failed -> requireActivity().showToast("Failed")
-                    is ResultOf.Failure -> requireActivity().showToast("Failure")
-                    is ResultOf.Progress -> {
-                        if (scrollFlag) {
-                            if (it.loading) bottomProgBar.visibility = VISIBLE else {
-                                bottomProgBar.visibility = GONE
-                                scrollFlag = false
-                            }
-                        } else
-                            if (it.loading) progBar.show() else progBar.dismiss()
-                    }
-                    is ResultOf.Success -> {
-                        it.value as TraineeListResp
-                        requireActivity().showToast("Success")
+        trainVM.dataSource?.observe(viewLifecycleOwner
+        ) { it ->
+            when (it) {
+                is ResultOf.Empty -> {
+                    requireActivity().showToast("Last Page Reached")
+                    Log.e(TAG, "observeTraineeList: $it")
+                }
+                is ResultOf.Failed -> requireActivity().showToast("Failed")
+                is ResultOf.Failure -> requireActivity().showToast("Failure")
+                is ResultOf.Progress -> {
+                    if (scrollFlag) {
+                        if (it.loading) bottomProgBar.visibility = VISIBLE else {
+                            bottomProgBar.visibility = GONE
+                            scrollFlag = false
+                        }
+                    } else
+                        if (it.loading) progBar.show() else progBar.dismiss()
+                }
+                is ResultOf.Success -> {
+                    it.value as TraineeListResp
+                    requireActivity().showToast("Success")
 
-                        setAdapterData(it.value.data?.rows)
-                    }
+                    setAdapterData(it.value.data?.rows)
                 }
             }
-        )
+        }
     }
 
 
