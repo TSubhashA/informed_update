@@ -36,7 +36,7 @@ class EvaluateReviewActivity : BaseActivity() {
                 Intent(
                     this,
                     EvaluationInitiateActivity::class.java
-                ).putExtra("rowItem",intent.getParcelableExtra<RowsItem>("rowItem"))
+                ).putExtra("rowItems",intent.getParcelableExtra<RowsItem>("rowItems"))
             )
 
         }

@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewTreeObserver
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -28,12 +27,12 @@ import com.informed.evaluator.presentation.personaldata.view.PersonalDataActivit
 
 class MyProfileFragment : Fragment() {
 
-lateinit var profileImage:ImageView
-lateinit var imageCallback:ImageUpdateCallBack
+    lateinit var profileImage: ImageView
+    lateinit var imageCallback: ImageUpdateCallBack
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        imageCallback=activity as ImageUpdateCallBack
+        imageCallback = activity as ImageUpdateCallBack
 
     }
 
@@ -56,10 +55,9 @@ lateinit var imageCallback:ImageUpdateCallBack
         val notication = view.findViewById(R.id.profile_notification) as CardView
         val changePassword = view.findViewById(R.id.profile_change_password) as CardView
         val profileLogout = view.findViewById(R.id.profile_logout) as CardView
-         profileImage = view.findViewById(R.id.profile_image) as ImageView
+        profileImage = view.findViewById(R.id.profile_image) as ImageView
 
         setImage()
-
 
 
         val badgeDrawable = BadgeDrawable.create(requireContext())
@@ -68,7 +66,7 @@ lateinit var imageCallback:ImageUpdateCallBack
         badgeDrawable.badgeGravity = BadgeDrawable.TOP_END
 
 //        badgeDrawable.setHorizontalOffset(350)
-        val n = 0
+        val n = 20
         if (n > 0)
             badgeDrawable.number = n
 
@@ -122,7 +120,7 @@ lateinit var imageCallback:ImageUpdateCallBack
         return view
     }
 
-    fun setImage(){
+    fun setImage() {
         Glide.with(profileImage.context)
             .load(SharedPreference().getValueString(ConstantKeys.IMAGE_URL))
             .into(profileImage)

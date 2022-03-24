@@ -11,8 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatecomplex.view.EvaluateComplexityActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatesite.view.EvaluateSelectSiteActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 
-class EvaluateComplexityAdapter(val context: Context): RecyclerView.Adapter<EvaluateComplexityAdapter.ViewHolder>() {
+class EvaluateComplexityAdapter(val context: Context,val data: RowsItem?): RecyclerView.Adapter<EvaluateComplexityAdapter.ViewHolder>() {
 
     val compl= arrayListOf("Easy","Medium","Difficult","Extreamly Difficult")
 
@@ -24,7 +25,12 @@ class EvaluateComplexityAdapter(val context: Context): RecyclerView.Adapter<Eval
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 holder.text.setText(compl.get(position))
-        holder.itemView.setOnClickListener { context.startActivity(Intent(context,EvaluateSelectSiteActivity::class.java))
+        holder.itemView.setOnClickListener {
+
+            val intent=Intent(context,EvaluateSelectSiteActivity::class.java)
+            intent.putExtra("rowItems",data)
+
+            context.startActivity(intent)
 //          (context as EvaluateComplexityActivity).finish()
         }
     }

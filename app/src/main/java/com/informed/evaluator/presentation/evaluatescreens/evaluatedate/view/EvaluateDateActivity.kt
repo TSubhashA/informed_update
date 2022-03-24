@@ -19,7 +19,7 @@ class EvaluateDateActivity : BaseActivity() {
         setTopBar()
 
         btn_next.setOnClickListener {
-            startActivity(Intent(this,EvaluateReviewActivity::class.java).putExtra("rowItem",intent.getParcelableExtra<RowsItem>("rowItem")))
+            startActivity(Intent(this,EvaluateReviewActivity::class.java).putExtra("rowItems",intent.getParcelableExtra<RowsItem>("rowItems")))
 //        finish()
         }
 

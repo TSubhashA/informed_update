@@ -9,11 +9,23 @@
     <include
         layout="@layout/app_bar"
         android:id="@+id/app_bar_layout"
-        />
+        android:layout_alignParentTop="true"
+        tools:ignore="IncludeLayoutParam" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_layout"
+       >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/app_bar_layout"
+        android:layout_alignParentTop="true"
         android:layout_margin="5dp"
         android:id="@+id/image_view"
         android:layout_centerHorizontal="true"
@@ -78,13 +90,58 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="First Name"
                 android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/purple"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/personal_tainee_name"
+                android:id="@+id/personal_tainee_first_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+
+                app:boxCornerRadiusBottomEnd="@dimen/radius_medium"
+                app:boxCornerRadiusBottomStart="@dimen/radius_medium"
+                app:boxCornerRadiusTopEnd="@dimen/radius_medium"
+                app:boxCornerRadiusTopStart="@dimen/radius_medium"
+                app:boxBackgroundColor="@color/grey6"
+                app:hintEnabled="false"
+                app:layout_anchorGravity="bottom|center"
+
+                app:boxStrokeWidth="0dp"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Annette Black"
+                    android:textSize="@dimen/text_size_head_small"
+                    android:paddingStart="@dimen/padding_default_low" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_view"
+
+            android:layout_margin="@dimen/margin_default_size"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Last Name"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/purple"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/personal_tainee_last_name"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -217,6 +274,8 @@ android:enabled="false"
 
     </LinearLayout>
 
+        </RelativeLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

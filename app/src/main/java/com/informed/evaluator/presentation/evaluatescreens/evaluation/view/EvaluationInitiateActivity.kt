@@ -24,7 +24,7 @@ class EvaluationInitiateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluation_initiate)
 
-        val data = intent.getParcelableExtra<RowsItem>("rowItem")
+        val data = intent.getParcelableExtra<RowsItem>("rowItems")
         setTopBar(data)
 
         main_title.setText(data?.questionnaire?.name)

@@ -49,9 +49,8 @@ class PersonalDataActivity : BaseActivity() {
         edit_image.setOnClickListener { selectImage() }
 
         btn_edit.setOnClickListener {
-            if (personal_tainee_name.editText?.text?.isNotEmpty()!! && personal_tainee_phone.editText?.text?.isNotEmpty()!!)
+            if (personal_tainee_first_name.editText?.text?.isNotEmpty()!! && personal_tainee_phone.editText?.text?.isNotEmpty()!! && personal_tainee_last_name.editText?.text?.isNotEmpty()!!)
                 observeEditing()
-
         }
 
         imageObserver()
@@ -89,8 +88,6 @@ class PersonalDataActivity : BaseActivity() {
                 }
                 is ResultOf.Success -> {
 
-
-
                     it.value as ImageUploadResponse
                     Glide.with(this)
                         .load(it.value.data?.url)
@@ -112,7 +109,8 @@ class PersonalDataActivity : BaseActivity() {
             .load(SharedPreference().getValueString(ConstantKeys.IMAGE_URL))
             .into(profile_image)
         Log.e(TAG, "setData: dataSet")
-        personal_tainee_name.editText?.setText(SharedPreference().getValueString(ConstantKeys.FIRSTNAME))
+        personal_tainee_first_name.editText?.setText(SharedPreference().getValueString(ConstantKeys.FIRSTNAME))
+        personal_tainee_last_name.editText?.setText(SharedPreference().getValueString(ConstantKeys.LASTNAME))
         personal_tainee_email.editText?.setText(SharedPreference().getValueString(ConstantKeys.EMAIL))
         personal_tainee_phone.editText?.setText(SharedPreference().getValueString(ConstantKeys.MOBILE))
 
@@ -127,10 +125,8 @@ class PersonalDataActivity : BaseActivity() {
 
     private fun observeEditing() {
         val phone = personal_tainee_phone.editText?.text.toString()
-        val name = personal_tainee_name.editText?.text.toString()
-        val ssplit=name.split(" ")
-        val firstName=ssplit[0]
-        val lastName= if(ssplit.size > 1) ssplit[1] else " "
+        val firstName = personal_tainee_first_name.editText?.text.toString()
+        val lastName= personal_tainee_last_name.editText?.text.toString()
         val status = "active"
         val image_url =
             if (selectedImageUri != null) selectedImageUri else SharedPreference().getValueString(

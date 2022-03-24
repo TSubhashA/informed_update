@@ -1,7 +1,9 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatesite.adapter
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +40,8 @@ class EvaluateSiteAdapter(val context: Context,val data: RowsItem?) :
                     EvaluateDateActivity::class.java
             )
 
-            intent.putExtra("rowItem", data)
+            intent.putExtra("rowItems", data)
+            Log.e(TAG, "onBindViewHolder: $data" )
             context.startActivity(intent)
 //            (context as EvaluateSelectSiteActivity).finish()
 

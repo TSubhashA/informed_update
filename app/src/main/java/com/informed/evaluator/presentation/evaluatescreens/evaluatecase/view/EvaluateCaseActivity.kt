@@ -10,6 +10,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatedate.view.EvaluateDateActivity
 import kotlinx.android.synthetic.main.activity_evaluate_case.*
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 
 class EvaluateCaseActivity : BaseActivity() {
 
@@ -21,7 +22,10 @@ fa=this
         setTopBar()
 
         btn_next.setOnClickListener {
-            startActivity(Intent(this,EvaluateDateActivity::class.java))
+            val data =intent.getParcelableExtra<RowsItem>("rowItems")
+            val intent=Intent(this,EvaluateDateActivity::class.java)
+            intent.putExtra("rowItems",data)
+            startActivity(intent)
 //        finish()
         }
 
