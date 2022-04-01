@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 
 // TODO: Rename parameter arguments, choose names that match
@@ -17,14 +19,14 @@ private const val ARG_PARAM2 = "param2"
 
 
 class QuestionEmailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
+
+    private var param1: QuestionsItem? = null
     private var param2: String? = null
 private var view1:View? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getParcelable(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -39,6 +41,17 @@ private var view1:View? = null
 
             val backButton = view1?.findViewById(R.id.btn_back) as MaterialButton
             val nextButton = view1?.findViewById(R.id.btn_next) as MaterialButton
+            val question_title = view1?.findViewById(R.id.question_title) as TextView
+            val question = view1?.findViewById(R.id.question) as TextView
+
+
+            val number =view1?.findViewById<TextView>(R.id.number)
+            number?.setText(param1?.position.toString())
+
+            question_title.setText(param1?.title)
+            question.setText(param1?.description)
+
+
 
             backButton.setOnClickListener {
                 (activity as EvaluationActivity?)?.backScreen()
@@ -56,10 +69,10 @@ private var view1:View? = null
     companion object {
 
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: QuestionsItem?, param2: String) =
             QuestionEmailFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }

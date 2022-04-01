@@ -80,12 +80,14 @@ class MyProfileFragment : Fragment() {
             SharedPreference().clearSharedPreference()
 
             activity?.startActivity(
+
                 Intent(
                     requireContext(),
                     SignInActivity::class.java
                 )
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            
             )
             activity?.finish()
 

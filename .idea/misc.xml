@@ -248,8 +248,14 @@
         <entry key="app/src/main/res/layout/fragment_evaluator_list.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/fragment_new_evaluate.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/fragment_question_email.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/fragment_question_image_choice.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/fragment_question_number.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_question_short_text.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/fragment_question_statement.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/fragment_question_yes_no.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/fragment_saved_draft.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/fragment_thank_feedback_eval.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_trainee_list.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/header_data.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/layout_question_image_choice_item.xml" value="0.25" />

@@ -12,10 +12,14 @@ enum class QuestionType(val type:String) {
     YESORNO("yes_or_no"),
     MULTIPLECHOICE("multiple_choice"),
     PICTURECHOICE("picture_choice"),
+    NUMBER("number"),
     PHONENUMBER("phone_number"),
+    EMAIL("email"),
     STATEMENT("statement"),
+    WELCOME("welcome_screen"),
     RATING("rating"),
-    SHORTTEXT("short_title"),
+    THANKYOU("thankyou_screen"),
+    SHORTTEXT("short_text"),
     OPINIONSCALE("opinion_scale");
 
     companion object {

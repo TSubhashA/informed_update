@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
@@ -41,6 +42,18 @@ class QuestionYesNoFragment : Fragment() {
 
             val backButton = view1?.findViewById(R.id.btn_back) as MaterialButton
             val nextButton = view1?.findViewById(R.id.btn_next) as MaterialButton
+
+
+
+            val question_title =view1?.findViewById<TextView>(R.id.question_title)
+            val question =view1?.findViewById<TextView>(R.id.question)
+
+            val number =view1?.findViewById<TextView>(R.id.number)
+            number?.setText(param1?.position.toString())
+
+            question_title?.setText(param1?.title)
+            question?.setText(param1?.description)
+
 
             backButton.setOnClickListener {
                 (activity as EvaluationActivity?)?.backScreen()

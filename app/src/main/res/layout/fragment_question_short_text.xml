@@ -61,11 +61,22 @@
             android:paddingBottom="20dp"
             android:text="Resident has appropriate surgical plan based on awareness of patient specific factors (e.g. biometry, pupil size,traum,uveitis)"
             android:textColor="@color/grey" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="240dp"
+            android:maxWidth="240dp"
+            android:layout_margin="@dimen/margin_default_low"
+            android:id="@+id/image"
+            android:visibility="visible"
+            />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:backgroundTint="@color/purple"

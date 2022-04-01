@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 import kotlinx.android.synthetic.main.fragment_evaluate_welcome.*
 
@@ -23,13 +25,13 @@ private const val ARG_PARAM2 = "param2"
  */
 class QuestionNumberFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
+    private var param1: QuestionsItem? = null
     private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
+            param1 = it.getParcelable(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
     }
@@ -43,6 +45,16 @@ class QuestionNumberFragment : Fragment() {
 
         val backButton = view.findViewById(R.id.btn_back) as MaterialButton
         val nextButton = view.findViewById(R.id.btn_next) as MaterialButton
+        val question_title = view.findViewById(R.id.question_title) as TextView
+        val question = view.findViewById(R.id.question) as TextView
+
+        question_title.setText(param1?.title)
+        question.setText(param1?.description)
+
+        val number =view.findViewById<TextView>(R.id.number)
+        number?.setText(param1?.position.toString())
+
+
 
         backButton.setOnClickListener {
             (activity as EvaluationActivity?)?.backScreen()
@@ -66,10 +78,10 @@ class QuestionNumberFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: QuestionsItem?, param2: String) =
             QuestionNumberFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
+                    putParcelable(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }

@@ -13,6 +13,7 @@
         android:orientation="vertical">
     <TextView
         android:layout_width="match_parent"
+        android:id="@+id/statement_text"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
 android:gravity="center"

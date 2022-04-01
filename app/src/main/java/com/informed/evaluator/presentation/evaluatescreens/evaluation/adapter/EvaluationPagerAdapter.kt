@@ -6,6 +6,13 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.EvaluationFinishFragment
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion.EvaluatequestionsFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatethankfeedback.ThankFeedbackEvalFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatewelcome.EvaluateWelcomeFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionemail.QuestionEmailFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionimagechoice.QuestionImageChoiceFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionnumber.QuestionNumberFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionstatement.QuestionStatementFragment
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questiontypeshorttext.QuestionShortTextFragment
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionyesno.QuestionYesNoFragment
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.wrapper.QuestionType
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.wrapper.Questionsnaire
@@ -27,12 +34,16 @@ class EvaluationPagerAdapter(fragmentActivity: FragmentActivity, val data: RowsI
         return if (position<data?.questionnaire?.questions?.size!!) when (
             data.questionnaire.questions[position]?.type.toString()
         ) {
-//            in QuestionType.YESORNO.type..QuestionType.OPINIONSCALE.type -> Questionsnaire.GetFragment(
-//                data?.questionnaire?.questions?.get(position)?.type.toString(),
-//                data?.questionnaire?.questions?.get(position)
-//            ).getQuestionType()
+
             QuestionType.YESORNO.type-> QuestionYesNoFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.MULTIPLECHOICE.type-> EvaluatequestionsFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.STATEMENT.type-> QuestionStatementFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.EMAIL.type-> QuestionEmailFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.SHORTTEXT.type-> QuestionShortTextFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.PICTURECHOICE.type-> QuestionImageChoiceFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.NUMBER.type-> QuestionNumberFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.WELCOME.type-> EvaluateWelcomeFragment.newInstance(data.questionnaire.questions[position],"Instance")
+            QuestionType.THANKYOU.type-> ThankFeedbackEvalFragment.newInstance(data.questionnaire.questions[position],"Instance")
 
 
             else -> EvaluationFinishFragment.newInstance("Final", "Instance 2")

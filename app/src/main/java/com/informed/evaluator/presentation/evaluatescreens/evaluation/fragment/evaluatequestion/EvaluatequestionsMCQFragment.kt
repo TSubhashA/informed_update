@@ -49,12 +49,15 @@ class EvaluatequestionsFragment : Fragment(), EvaluationOptionMCQAdapter.CustomL
         val backButton = view.findViewById(R.id.btn_back) as MaterialButton
         nextButton = view.findViewById(R.id.btn_next) as MaterialButton
 
+
+
+
         val recyclerView = view.findViewById(R.id.option_recycler) as RecyclerView
 
-        val number =view.findViewById<TextView>(R.id.number)
+
         val question_title =view.findViewById<TextView>(R.id.question_title)
         val question =view.findViewById<TextView>(R.id.question)
-
+        val number =view.findViewById<TextView>(R.id.number)
         number.setText(param1?.position.toString())
         question_title.setText(param1?.title.toString())
         question.setText(param1?.description)
