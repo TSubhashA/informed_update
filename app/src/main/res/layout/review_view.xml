@@ -1,0 +1,35 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginTop="@dimen/margin_default_size"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:fontFamily="@font/poppins"
+android:id="@+id/title"
+        android:text="Select Evaluation"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text_size_medium"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_size"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/margin_default_size"
+        android:background="@drawable/box_border_gray"
+        android:fontFamily="@font/poppins"
+        android:id="@+id/sub_title"
+        android:padding="12dp"
+        android:text="Select Evaluation"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_head_small"
+
+        />
+</LinearLayout>

@@ -92,6 +92,7 @@ class SignInViewModel(val signInRepo: ISignInRepo) : BaseViewModel() {
         SharedPreference().setString(ConstantKeys.ID, value.data.id.toString())
         SharedPreference().setString(ConstantKeys.MOBILE, value.data.phone.toString())
         SharedPreference().setString(ConstantKeys.USER_ROLE, value.data.roles[0]?.role.toString())
+        SharedPreference().setString(ConstantKeys.ROLE_ID, value.data.roles[0]?.roleId.toString())
 
         if (value.data.roles[0]?.role.toString() == "attending")
         SharedPreference().setBoolean(ConstantKeys.IS_ATTENDEE,true)

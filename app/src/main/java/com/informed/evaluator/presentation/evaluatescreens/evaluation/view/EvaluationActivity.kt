@@ -6,13 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
-
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
 import com.informed.evaluator.base.BaseActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatereview.viewmodel.EvaluateConfirmViewModel
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.viewmodel.EvaluationVMFactory
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.adapter.EvaluationPagerAdapter
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.viewmodel.EvaluateQuestionsVMFactory
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.viewmodel.EvaluateQuestionsViewModel
 import com.informed.evaluator.presentation.login.view.SignInActivity
 import com.informed.evaluator.utils.CustomDialogue
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
@@ -22,16 +29,20 @@ class EvaluationActivity : BaseActivity() {
 
     lateinit var pager: ViewPager2
 
+    val data by lazy {
+        intent.getParcelableExtra<RowsItem>("rowItems")
+    }
+
+    private val vm by viewModels<EvaluateQuestionsViewModel> { EvaluateQuestionsVMFactory() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluation)
 
         setTopBar()
 
-        val data = intent.getParcelableExtra<RowsItem>("rowItem")
-
-
         pager = findViewById<ViewPager2>(R.id.viewPager)
+        Log.e(TAG, "onCreate: $data" )
         val adapter = EvaluationPagerAdapter(this, data)
         pager.adapter = adapter
 
@@ -39,40 +50,7 @@ class EvaluationActivity : BaseActivity() {
         dotsIndicator.setViewPager2(pager)
 
         pager.isUserInputEnabled = false
-
-//        btn_back.setOnClickListener(View.OnClickListener {
-//            if (pager.currentItem != 0) pager.setCurrentItem(
-//                pager.getCurrentItem() - 1
-//            )
-//        })
-//
-//        btn_next.setOnClickListener(View.OnClickListener {
-//            if (pager.getCurrentItem() < pager.getAdapter()?.itemCount!!)
-//                pager.setCurrentItem(pager.getCurrentItem() + 1)
-//        })
-
-//        pager.registerOnPageChangeCallback(object : OnPageChangeCallback(){
-//            override fun onPageScrolled(
-//                position: Int,
-//                positionOffset: Float,
-//                positionOffsetPixels: Int
-//            ) {
-//                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-//                if (position== pager.getAdapter()?.itemCount?.minus(1))
-//                    reachLast()
-//            }
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//                super.onPageScrollStateChanged(state)
-//            }
-//        })
     }
-//    fun reachLast(){
-//        btn_next.setText("Submit")
-//    }
 
     private fun setTopBar() {
 
@@ -89,34 +67,54 @@ class EvaluationActivity : BaseActivity() {
 
         }
 
-//        text.text = "Evaluate Annet"
-//        setSupportActionBar(toolbar)
-//        toolbar.setNavigationIcon(R.drawable.ic_fi_x_circle)
-
 
     }
 
-    fun changeScreen() {
+    fun changeScreen(
+        id: Int? = data?.questionnaire?.evaluationId,
+        saveRequest: SaveEvaluateRequest? = null,
+        submitRequest: BeginSubmitEvaluateRequest? = null
+    ) {
         Log.e(
             TAG,
             "changeScreen: CITem - ${pager.currentItem} , totalItem - ${pager.adapter?.itemCount}"
         )
 
         if (pager.currentItem == pager.adapter?.itemCount!! - 1) {
+
+//            saveQuestions(id, saveRequest)
+    if (submitRequest!=null)
+            submitQuestions(id, submitRequest)
+
             val intent = Intent(this, SignInActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             finish()
-//            EvaluationInitiateActivity.fa?.finish()
-
 
             startActivity(intent)
-        }
+        } else {
+            if (saveRequest!=null)
+            saveQuestions(id, saveRequest)
 
-        if (pager.currentItem < pager.adapter?.itemCount!!)
-            pager.currentItem = pager.currentItem + 1
+            if (pager.currentItem < pager.adapter?.itemCount!!)
+                pager.currentItem = pager.currentItem + 1
+
+        }
 
 
     }
+
+    private fun submitQuestions(id: Int?, submitRequest: BeginSubmitEvaluateRequest?) {
+
+        vm.submitEvaluate(id!!, submitRequest!!)
+    }
+
+    private fun saveQuestions(id: Int?, saveRequest: SaveEvaluateRequest?) {
+
+        vm.saveEvaluate(id!!, saveRequest!!)
+
+
+    }
+
 
     fun backScreen() {
         if (pager.currentItem != 0)

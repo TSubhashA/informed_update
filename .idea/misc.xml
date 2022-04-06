@@ -236,6 +236,11 @@
         <entry key="app/src/main/res/font/poppins.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_chat.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_evaluate.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/activity_evaluate_case.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/activity_evaluate_complexity.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_evaluate_date.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/activity_evaluate_review.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/activity_evaluate_select_site.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_evaluation.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_evaluation_initiate.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_personal_data.xml" value="0.11005434782608696" />
@@ -260,6 +265,7 @@
         <entry key="app/src/main/res/layout/header_data.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/layout_question_image_choice_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/questionair_options_list_item.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/review_view.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/saved_draft_layout_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/attend_bottom_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/cancel_menu.xml" value="0.19375" />

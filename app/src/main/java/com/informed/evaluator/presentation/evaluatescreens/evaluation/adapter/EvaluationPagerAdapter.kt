@@ -34,7 +34,6 @@ class EvaluationPagerAdapter(fragmentActivity: FragmentActivity, val data: RowsI
         return if (position<data?.questionnaire?.questions?.size!!) when (
             data.questionnaire.questions[position]?.type.toString()
         ) {
-
             QuestionType.YESORNO.type-> QuestionYesNoFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.MULTIPLECHOICE.type-> EvaluatequestionsFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.STATEMENT.type-> QuestionStatementFragment.newInstance(data.questionnaire.questions[position],"Instance")
@@ -44,7 +43,6 @@ class EvaluationPagerAdapter(fragmentActivity: FragmentActivity, val data: RowsI
             QuestionType.NUMBER.type-> QuestionNumberFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.WELCOME.type-> EvaluateWelcomeFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.THANKYOU.type-> ThankFeedbackEvalFragment.newInstance(data.questionnaire.questions[position],"Instance")
-
 
             else -> EvaluationFinishFragment.newInstance("Final", "Instance 2")
 

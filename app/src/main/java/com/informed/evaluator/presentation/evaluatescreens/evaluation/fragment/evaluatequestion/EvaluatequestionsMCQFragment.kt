@@ -1,7 +1,9 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.*
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.ChoicesItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion.adapter.EvaluationOptionMCQAdapter
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion.adapter.MyItemCustomAnimation
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion.adapter.MyItemTouchHelper
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 
 private const val ARG_PARAM1 = "param1"
@@ -70,11 +74,6 @@ class EvaluatequestionsFragment : Fragment(), EvaluationOptionMCQAdapter.CustomL
 
         recyclerView.itemAnimator= MyItemCustomAnimation()
 
-//        val dividerItemDecoration = DividerItemDecoration(recyclerView.getContext(),
-//            layoutManager.getOrientation())
-//        recyclerView.addItemDecoration(dividerItemDecoration)
-//        (recyclerView.itemAnimator as SimpleItemAnimator?)!!.supportsChangeAnimations =
-//            false
         setData()
 
         val itemTouch = MyItemTouchHelper(requireContext(), mcqAdapter)
@@ -91,7 +90,18 @@ class EvaluatequestionsFragment : Fragment(), EvaluationOptionMCQAdapter.CustomL
         nextButton.setOnClickListener {
 //            if (mcqAdapter.extendedCard>-1)
 //            mcqAdapter.commentSave(recyclerView.findViewHolderForAdapterPosition(mcqAdapter.extendedCard) as EvaluationOptionMCQAdapter.ViewHolder)
-            (activity as EvaluationActivity?)?.changeScreen()
+          val selected=mcqAdapter.selectedModel
+            Log.e(TAG, "onCreateView: $selected", )
+            var model:SaveEvaluateRequest?=null
+            if (selected!=null)
+            {
+                model= SaveEvaluateRequest()
+            model.questionId=selected.questionId
+                model.choiceId=selected.id
+                if (mcqAdapter.commentSaved.length>0)
+                    model.comment=mcqAdapter.commentSaved
+            }
+            (activity as EvaluationActivity?)?.changeScreen(saveRequest = model)
         }
 
         return view

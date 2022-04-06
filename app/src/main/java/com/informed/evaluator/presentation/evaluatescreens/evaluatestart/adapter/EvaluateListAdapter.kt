@@ -12,12 +12,17 @@ import android.widget.Filterable
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.R
+import com.informed.evaluator.common.Constants
 import com.informed.evaluator.preference.ConstantKeys
 import com.informed.evaluator.preference.SharedPreference
+import com.informed.evaluator.presentation.evaluatescreens.evaluatecase.view.EvaluateCaseActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatecomplex.view.EvaluateComplexityActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluatedate.view.EvaluateDateActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatesite.view.EvaluateSelectSiteActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.view.EvaluateStartActivity
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.adapter.ContextInfoType
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
 
 class EvaluateListAdapter(val context: Context) :
     RecyclerView.Adapter<EvaluateListAdapter.ViewHolder>(), Filterable {
@@ -47,16 +52,36 @@ class EvaluateListAdapter(val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.itemView.setOnClickListener {
-
             val intent = Intent(
-                context,
-                if (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE, false))
-                    EvaluateComplexityActivity::class.java
-                else
-                    EvaluateSelectSiteActivity::class.java
+                context, if(update!![position]?.contextualInfo?.size!! > 0)
+                {
+                    when(update!![position]?.contextualInfo?.get(0)?.type){
+                        ContextInfoType.DROPDOWN.name -> EvaluateComplexityActivity::class.java
+                        ContextInfoType.SHORT_TEXT.name->EvaluateCaseActivity::class.java
+                        ContextInfoType.LONG_TEXT.name->EvaluateCaseActivity::class.java
+                        else ->
+                            EvaluateDateActivity::class.java
+                    }
+                }
+            else
+                EvaluateDateActivity::class.java
             )
 
-            intent.putExtra("rowItems", update?.get(position))
+
+            intent.putExtra(Constants.ContextSendActivity.RowItems, update?.get(position))
+
+            val conTextInfo = BeginSubmitEvaluateRequest()
+
+            conTextInfo.evaluateeRoleId=SharedPreference().getValueString(ConstantKeys.ROLE_ID)?.toInt()
+            intent.putExtra(Constants.ContextInfo.context, conTextInfo)
+
+            if(update!![position]?.contextualInfo?.size!! > 0)
+            {
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                intent.putExtra(Constants.ContextInfo.info, 0)
+            }
+
             context.startActivity(intent)
 //            (context as EvaluateStartActivity).finish()
         }
@@ -114,3 +139,4 @@ class EvaluateListAdapter(val context: Context) :
     }
 
 }
+

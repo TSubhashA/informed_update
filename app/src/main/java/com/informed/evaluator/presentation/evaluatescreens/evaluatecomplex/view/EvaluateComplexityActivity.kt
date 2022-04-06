@@ -7,24 +7,42 @@ import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.base.BaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
+import com.informed.evaluator.common.Constants
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.adapter.EvaluateComplexityAdapter
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
 
 class EvaluateComplexityActivity : BaseActivity() {
+
+    val data by lazy {intent.getParcelableExtra<RowsItem>(Constants.ContextSendActivity.RowItems)}
+
+    val pos by lazy {
+
+        intent.getIntExtra(Constants.ContextInfo.info,-1)
+    }
+
+    val conTextInfo by lazy {
+        intent.getParcelableExtra<BeginSubmitEvaluateRequest>(Constants.ContextInfo.context)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_complexity)
+
+        val title = findViewById<TextView>(R.id.title)
+
+        title.setText(data?.contextualInfo!![pos]?.name.toString())
+
         setTopBar()
+
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
 
-        val data =intent.getParcelableExtra<RowsItem>("rowItems")
-
-        val adapter = EvaluateComplexityAdapter(this, data)
+        val adapter = EvaluateComplexityAdapter(this, data,pos,conTextInfo)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
 
     }
 

@@ -1,6 +1,5 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatesite.view
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,21 +7,37 @@ import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.base.BaseActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.informed.evaluator.R
+import com.informed.evaluator.common.Constants
 import com.informed.evaluator.presentation.evaluatescreens.evaluatesite.adapter.EvaluateSiteAdapter
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
 
 class EvaluateSelectSiteActivity : BaseActivity() {
-    var fa: Activity? = null
+
+    val data by lazy {intent.getParcelableExtra<RowsItem>(Constants.ContextSendActivity.RowItems)}
+
+    val pos by lazy {
+        intent.getIntExtra(Constants.ContextInfo.info,-1)
+    }
+
+    val conTextInfo by lazy {
+        intent.getParcelableExtra<BeginSubmitEvaluateRequest>(Constants.ContextInfo.context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_select_site)
-fa=this
+
+        val title = findViewById<TextView>(R.id.title)
+
+        title.setText(data?.contextualInfo!![pos]?.name.toString())
+
         setTopBar()
 
-val data=intent.getParcelableExtra<RowsItem>("rowItems")
+
 
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        val adapter = EvaluateSiteAdapter(this,data)
+        val adapter = EvaluateSiteAdapter(this,data,pos, conTextInfo)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter

@@ -24,7 +24,7 @@ object NetworkModule {
 
     private val variableUrl="/api/v1/"
 
-    private val baseUrl = "http://34.75.22.64"
+    private val baseUrl = "http://34.74.224.155"
 
     private val ngrokUrl=""
 
@@ -50,7 +50,7 @@ object NetworkModule {
             .build()
     }
 
-    private fun okHttpClient(applicationContext: BaseApp) =
+     fun okHttpClient(applicationContext: BaseApp) =
         okHttpBuilder(applicationContext)
 
 

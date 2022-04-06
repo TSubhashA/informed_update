@@ -35,9 +35,12 @@ class EvaluationViewModel(val evaluation:IEvaluationRepo) : BaseViewModel() {
                         dataSource?.value = ResultOf.Success(it)
                 } else {
                     dataSource?.value = ResultOf.Empty("data Empty")
+                    page--
                 }
             }
     }
+
+
 
 
 }

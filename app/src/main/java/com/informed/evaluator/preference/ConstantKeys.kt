@@ -11,6 +11,7 @@ class ConstantKeys {
         val ID="id"
         val MOBILE="mobile"
         val USER_ROLE="user_role"
+        val ROLE_ID="role_id"
         val IS_ATTENDEE="is_attendee_active"
 
     }

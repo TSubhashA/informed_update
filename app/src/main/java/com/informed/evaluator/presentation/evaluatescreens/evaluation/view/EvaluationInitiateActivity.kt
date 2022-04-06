@@ -47,7 +47,7 @@ class EvaluationInitiateActivity : AppCompatActivity() {
         })
 
         btn_start.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, EvaluationActivity::class.java).putExtra("rowItem", data))
+            startActivity(Intent(this, EvaluationActivity::class.java).putExtra("rowItems", data))
         })
 
 

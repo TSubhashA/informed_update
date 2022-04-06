@@ -36,10 +36,11 @@ class EvaluationOptionMCQAdapter(
 
 
     private var data = mutableListOf<ChoicesItem?>()
+    var selectedModel: ChoicesItem? =null
     private var selectedData = -1
     var extendedCard = -1
     var commentPos = -1
-    private var commentSaved = ""
+     var commentSaved = ""
     var isExpansion = false
     var isCommentSaved = false
 
@@ -192,22 +193,14 @@ class EvaluationOptionMCQAdapter(
                 } else
                     if (selectedData == position) {
                         selectedData = -1
+                        selectedModel=null
 //                    context.showToast("card clicked")
                         selectedPosition(false)
                         updateItem(position)
 
-                    } else if (extendedCard == position) {
+                    }
 
-//                    updateItem(position)
-//                    extendedCard = -1
-//                    if  (selectedData>-1){
-//                    val oldSelected = selectedData
-//                    selectedData = position
-//                    notifyItemChanged(oldSelected)
-//                    notifyItemChanged(selectedData)
-
-//                    cardView.isChecked = true
-                    } else {
+                    else {
                         setVisiblity(false, position)
 
                         if (commentPos > -1) {
@@ -221,6 +214,8 @@ class EvaluationOptionMCQAdapter(
                         if (selectedData > -1) {
                             val oldSelected = selectedData
                             selectedData = position
+
+
                             updateItem(oldSelected)
                             notifyItemChanged(oldSelected)
                             updateItem(position)
@@ -230,6 +225,7 @@ class EvaluationOptionMCQAdapter(
                             selectedData = position
                             selectedPosition(true)
                             updateItem(position)
+
                             notifyItemChanged(position)
                         }
                     }
@@ -321,7 +317,13 @@ class EvaluationOptionMCQAdapter(
         }
 
         fun selectedPosition(selectedState: Boolean) {
+            selectedModel = if (selectedData!=-1)
+                data.get(selectedData)
+            else
+                null
+
             if (selectedState) {
+
                 question_option_ll.setBackgroundColor(context.resources.getColor(R.color.purple_6))
 //                optionValue.setTextColor(context.resources.getColor(R.color.white))
                 if (commentPos == -1) {
@@ -334,7 +336,6 @@ class EvaluationOptionMCQAdapter(
 
             } else {
                 question_option_ll.setBackgroundColor(Color.WHITE)
-
                 swipeRelativeLayout.visibility = View.GONE
 
 //                optionValue.setTextColor(Color.BLACK)

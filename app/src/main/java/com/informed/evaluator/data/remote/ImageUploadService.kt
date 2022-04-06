@@ -1,28 +1,20 @@
 package com.informed.evaluator.data.remote
 
-import com.informed.evaluator.network.NetworkModule
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 
 interface ImageUploadService {
 
-    @POST("gcp/upload-image")
-    suspend fun uploadImage(@Part part: MultipartBody.Part): Response<Any>?
+    @Multipart
+    @PUT
+    suspend fun uploading(
+        @Url url: String,
+        @Header("Content-Type") contentType:String ,
+        @Part part: MultipartBody.Part
+    ): Response<Any>?
 
-    companion object {
 
-        var image: ImageUploadService? = null
-
-        fun getInstance() : ImageUploadService {
-
-            if (image == null) {
-                val retrofit = NetworkModule.makeApiServicewithAuth()
-                image = retrofit.create(ImageUploadService::class.java)
-            }
-            return image!!
-        }
-    }
 }

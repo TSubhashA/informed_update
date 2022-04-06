@@ -7,13 +7,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class EvaluationRepo(val eval:EvaluationServices):IEvaluationRepo {
+class EvaluationRepo(private val eval: EvaluationServices) : IEvaluationRepo {
     override suspend fun getEvaluation(page: Int, pageSize: Int): Flow<EvaluationResponse> = flow {
 
-        val value=eval.getEvaluations(page,pageSize)
+        val value = eval.getEvaluations(page, pageSize)
         emit(value!!)
 
     }.flowOn(Dispatchers.IO)
+
 
 
 }
