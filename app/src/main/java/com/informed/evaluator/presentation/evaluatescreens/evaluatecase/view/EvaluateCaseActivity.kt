@@ -1,9 +1,12 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatecase.view
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.base.BaseActivity
 import com.informed.evaluator.common.Constants
@@ -34,6 +37,10 @@ class EvaluateCaseActivity : BaseActivity() {
 
         title.text = data?.contextualInfo!![pos]?.name.toString()
 
+        val edit_text = findViewById<TextInputLayout>(R.id.edit_text)
+        val hint = "Enter the ${data?.contextualInfo!![pos]?.name}"
+        edit_text.editText?.setHint(hint)
+
         setTopBar()
 
         btn_next.setOnClickListener {
@@ -43,9 +50,9 @@ class EvaluateCaseActivity : BaseActivity() {
 
                 if (data?.contextualInfo?.size!! > pos + 1) {
                     when (data?.contextualInfo!![pos + 1]?.type) {
-                        ContextInfoType.DROPDOWN.name -> EvaluateSelectSiteActivity::class.java
-                        ContextInfoType.SHORT_TEXT.name -> EvaluateCaseActivity::class.java
-                        ContextInfoType.LONG_TEXT.name -> EvaluateCaseActivity::class.java
+                        ContextInfoType.DROPDOWN.type -> EvaluateSelectSiteActivity::class.java
+                        ContextInfoType.SHORT_TEXT.type -> EvaluateCaseActivity::class.java
+                        ContextInfoType.LONG_TEXT.type -> EvaluateCaseActivity::class.java
 
                         else -> EvaluateDateActivity::class.java
                     }
@@ -56,9 +63,16 @@ class EvaluateCaseActivity : BaseActivity() {
             )
             intent.putExtra(Constants.ContextSendActivity.RowItems, data)
             val text = edit_text.editText?.text.toString()
-            conTextInfo?.contextualInfo =
-                mapOf(data?.contextualInfo!![pos]?.name.toString() to text)
+
+            if (text.isNotEmpty()) {
+                val addMap =
+                    mapOf<String, String>(data?.contextualInfo!![pos]?.name.toString() to text)
+
+                conTextInfo?.contextualInfo?.putAll(addMap)
+            }
             intent.putExtra(Constants.ContextInfo.context, conTextInfo)
+
+            Log.e(TAG, "onCreate: $conTextInfo")
             if (data?.contextualInfo!!.size > pos + 1) {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK)

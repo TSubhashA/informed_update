@@ -17,6 +17,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.wrapper.SpeechListnerWrapper
 import com.informed.evaluator.utils.SpeechRecognizeClass
@@ -28,6 +29,8 @@ private const val ARG_PARAM2 = "param2"
 
 
 class QuestionShortTextFragment : Fragment() {
+
+
 
     private var param1: QuestionsItem? = null
     private var param2: String? = null
@@ -52,6 +55,7 @@ class QuestionShortTextFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_question_short_text, container, false)
         speech = SpeechRecognizeClass(requireContext())
         val backButton = view.findViewById(R.id.btn_back) as MaterialButton
@@ -88,7 +92,18 @@ class QuestionShortTextFragment : Fragment() {
             (activity as EvaluationActivity?)?.backScreen()
         }
         nextButton.setOnClickListener {
-            (activity as EvaluationActivity?)?.changeScreen()
+            var model: SaveEvaluateRequest? = null
+            if (textContainer.editText?.text?.length!! > 0) {
+
+                val text = textContainer.editText?.text
+
+
+                model = SaveEvaluateRequest()
+                model.questionId = param1?.id
+                model.textValue = text
+            }
+
+            (activity as EvaluationActivity?)?.changeScreen(saveRequest = model)
         }
 
         return view

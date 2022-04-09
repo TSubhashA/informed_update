@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -22,6 +23,7 @@ import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationInitiateActivity
 import kotlinx.android.synthetic.main.activity_evaluate_review.*
+import java.util.*
 
 
 class EvaluateReviewActivity : BaseActivity() {
@@ -39,20 +41,32 @@ class EvaluateReviewActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate_review)
 
+        val insertPoint = findViewById<View>(R.id.linear_layout) as LinearLayout
         val vi =
             applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val v: View = vi.inflate(R.layout.review_view, null)
 
-
-        val textViewTitle = v.findViewById<View>(R.id.title) as TextView
-        val textViewSubTitle = v.findViewById<View>(R.id.sub_title) as TextView
-
-        val insertPoint = findViewById<View>(R.id.linear_layout) as LinearLayout
+        insertPoint.removeAllViews()
 
         conTextInfo?.contextualInfo?.forEach { entry ->
-            textViewTitle.text = entry.key
-            textViewSubTitle.text = entry.value
-            insertPoint.addView(v)
+            val v: View = vi.inflate(R.layout.review_view, null)
+
+            val textViewTitle = v.findViewById<View>(R.id.title) as TextView
+            val textViewSubTitle = v.findViewById<View>(R.id.sub_title) as TextView
+            textViewTitle.text = entry.key.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+            textViewSubTitle.text = entry.value.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(
+                    Locale.getDefault()
+                ) else it.toString()
+            }
+
+//            if (v.parent != null) {
+//                (v.parent as ViewGroup ).removeView(v) // <- fix
+//            }
+            insertPoint.addView(v, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) )
         }
 
         setTopBar()
@@ -86,15 +100,21 @@ class EvaluateReviewActivity : BaseActivity() {
     }
 
     private fun startEvaluation() {
-        val beginEvaluate = if (conTextInfo!=null) conTextInfo as BeginSubmitEvaluateRequest else
-            BeginSubmitEvaluateRequest()
-
-        beginEvaluate.evaluateeRoleId=
-            SharedPreference().getValueString(ConstantKeys.ROLE_ID)?.toInt()!!
 
 
-        beginEvaluate.contextualInfo= mapOf("comment" to "first evaluation")
+        var beginEvaluate: BeginSubmitEvaluateRequest? = null
 
+        if (conTextInfo != null)
+            beginEvaluate = conTextInfo as BeginSubmitEvaluateRequest
+        else {
+            beginEvaluate =
+                BeginSubmitEvaluateRequest()
+
+            beginEvaluate.evaluateeRoleId =
+                SharedPreference().getValueString(ConstantKeys.ROLE_ID)?.toInt()!!
+
+            beginEvaluate.contextualInfo = mutableMapOf("comment" to "first evaluation")
+        }
 
 
         Log.e(TAG, "startEvaluation: $beginEvaluate")

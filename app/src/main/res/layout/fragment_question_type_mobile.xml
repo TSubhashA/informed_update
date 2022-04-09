@@ -73,6 +73,7 @@
         <com.hbb20.CountryCodePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/code_picker"
             app:ccp_showPhoneCode="false"
             app:ccp_showNameCode="false"
             />
@@ -80,6 +81,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_weight="1"
+            android:id="@+id/mobile"
             android:layout_height="wrap_content"
             android:textColor="@color/green"
             android:text="7894561230"

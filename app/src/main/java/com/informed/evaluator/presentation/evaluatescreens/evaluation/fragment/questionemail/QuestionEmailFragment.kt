@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -43,6 +44,7 @@ private var view1:View? = null
             val nextButton = view1?.findViewById(R.id.btn_next) as MaterialButton
             val question_title = view1?.findViewById(R.id.question_title) as TextView
             val question = view1?.findViewById(R.id.question) as TextView
+            val email_edit_text = view1?.findViewById(R.id.email_edit_text) as EditText
 
 
             val number =view1?.findViewById<TextView>(R.id.number)
@@ -57,7 +59,16 @@ private var view1:View? = null
                 (activity as EvaluationActivity?)?.backScreen()
             }
             nextButton.setOnClickListener {
-                (activity as EvaluationActivity?)?.changeScreen()
+                var model: SaveEvaluateRequest?=null
+                val email=email_edit_text.text
+if (email.length>0) {
+
+    model = SaveEvaluateRequest()
+    model.questionId = param1?.id
+    model.textValue = email.toString()
+}
+
+                (activity as EvaluationActivity?)?.changeScreen(saveRequest = model)
             }
 
 

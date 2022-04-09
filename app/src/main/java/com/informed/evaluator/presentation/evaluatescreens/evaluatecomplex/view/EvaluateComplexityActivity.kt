@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.informed.evaluator.base.BaseActivity
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.common.Constants
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.adapter.EvaluateComplexityAdapter
@@ -31,9 +32,10 @@ class EvaluateComplexityActivity : BaseActivity() {
         setContentView(R.layout.activity_evaluate_complexity)
 
         val title = findViewById<TextView>(R.id.title)
-
         title.setText(data?.contextualInfo!![pos]?.name.toString())
-
+        val search = findViewById<TextInputLayout>(R.id.search)
+        val hint="Enter the ${data?.contextualInfo!![pos]?.name}"
+search.editText?.setHint(hint)
         setTopBar()
 
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)

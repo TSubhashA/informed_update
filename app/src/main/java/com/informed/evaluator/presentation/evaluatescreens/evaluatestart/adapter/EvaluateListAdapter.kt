@@ -1,6 +1,7 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluatestart.adapter
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -56,9 +57,9 @@ class EvaluateListAdapter(val context: Context) :
                 context, if(update!![position]?.contextualInfo?.size!! > 0)
                 {
                     when(update!![position]?.contextualInfo?.get(0)?.type){
-                        ContextInfoType.DROPDOWN.name -> EvaluateComplexityActivity::class.java
-                        ContextInfoType.SHORT_TEXT.name->EvaluateCaseActivity::class.java
-                        ContextInfoType.LONG_TEXT.name->EvaluateCaseActivity::class.java
+                        ContextInfoType.DROPDOWN.type -> EvaluateComplexityActivity::class.java
+                        ContextInfoType.SHORT_TEXT.type->EvaluateCaseActivity::class.java
+                        ContextInfoType.LONG_TEXT.type->EvaluateCaseActivity::class.java
                         else ->
                             EvaluateDateActivity::class.java
                     }
@@ -67,12 +68,17 @@ class EvaluateListAdapter(val context: Context) :
                 EvaluateDateActivity::class.java
             )
 
+            Log.e(TAG, "onBindViewHolder: $intent  " )
+            Log.e(TAG, "onBindViewHolder: ${ContextInfoType.DROPDOWN.name}  " )
 
             intent.putExtra(Constants.ContextSendActivity.RowItems, update?.get(position))
 
             val conTextInfo = BeginSubmitEvaluateRequest()
 
             conTextInfo.evaluateeRoleId=SharedPreference().getValueString(ConstantKeys.ROLE_ID)?.toInt()
+
+            conTextInfo.contextualInfo= mutableMapOf()
+
             intent.putExtra(Constants.ContextInfo.context, conTextInfo)
 
             if(update!![position]?.contextualInfo?.size!! > 0)

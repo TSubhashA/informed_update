@@ -45,9 +45,9 @@ class EvaluateSiteAdapter(
 
                 if (data?.contextualInfo?.size!! > pos + 1) {
                     when (data.contextualInfo[pos + 1]?.type) {
-                        ContextInfoType.DROPDOWN.name -> EvaluateSelectSiteActivity::class.java
-                        ContextInfoType.SHORT_TEXT.name -> EvaluateCaseActivity::class.java
-                        ContextInfoType.LONG_TEXT.name -> EvaluateCaseActivity::class.java
+                        ContextInfoType.DROPDOWN.type -> EvaluateSelectSiteActivity::class.java
+                        ContextInfoType.SHORT_TEXT.type -> EvaluateCaseActivity::class.java
+                        ContextInfoType.LONG_TEXT.type -> EvaluateCaseActivity::class.java
 
                         else -> EvaluateDateActivity::class.java
                     }
@@ -57,10 +57,13 @@ class EvaluateSiteAdapter(
 
             )
             intent.putExtra(Constants.ContextSendActivity.RowItems, data)
-            conTextInfo?.contextualInfo =
-                mapOf(data.contextualInfo[pos]?.name.toString() to compl!![position].toString())
+
+            val addMap= mapOf<String,String>(data.contextualInfo[pos]?.name.toString() to compl!![position].toString())
+
+            conTextInfo?.contextualInfo?.putAll(addMap)
 
             intent.putExtra(Constants.ContextInfo.context, conTextInfo)
+            Log.e(TAG, "onBindViewHolder: $conTextInfo" )
             if(data.contextualInfo.size > pos+1)
             {
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

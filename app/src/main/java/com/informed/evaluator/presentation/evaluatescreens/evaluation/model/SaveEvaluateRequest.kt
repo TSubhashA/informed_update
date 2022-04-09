@@ -9,13 +9,13 @@ import kotlinx.android.parcel.RawValue
 data class SaveEvaluateRequest(
 
 	@Json(name="text_value")
-	val textValue: @RawValue Any? = null,
+	var textValue: @RawValue Any? = null,
 
 	@Json(name="number_value")
-	val numberValue: @RawValue Any? = null,
+	var numberValue: @RawValue Any? = null,
 
 	@Json(name="date_value")
-	val dateValue: @RawValue Any? = null,
+    var dateValue: @RawValue Any? = null,
 
 	@Json(name="comment")
 	var comment: @RawValue Any? = null,

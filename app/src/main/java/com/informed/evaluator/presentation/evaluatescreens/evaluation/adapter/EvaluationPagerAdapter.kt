@@ -44,11 +44,11 @@ class EvaluationPagerAdapter(fragmentActivity: FragmentActivity, val data: RowsI
             QuestionType.WELCOME.type-> EvaluateWelcomeFragment.newInstance(data.questionnaire.questions[position],"Instance")
             QuestionType.THANKYOU.type-> ThankFeedbackEvalFragment.newInstance(data.questionnaire.questions[position],"Instance")
 
-            else -> EvaluationFinishFragment.newInstance("Final", "Instance 2")
+            else -> EvaluationFinishFragment.newInstance("Finish", "Instance 2")
 
         }
         else
-            EvaluationFinishFragment.newInstance("Final", "Instance 2")
+            EvaluationFinishFragment.newInstance("Finish", "Instance 2")
 
 
 

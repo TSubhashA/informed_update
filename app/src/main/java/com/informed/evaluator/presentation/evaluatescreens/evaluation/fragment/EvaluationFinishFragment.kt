@@ -9,6 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
+import com.informed.evaluator.preference.ConstantKeys
+import com.informed.evaluator.preference.SharedPreference
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.BeginSubmitEvaluateRequest
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SubmitEvaluateResponse
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 
 private const val ARG_PARAM1 = "param1"
@@ -42,7 +47,13 @@ class EvaluationFinishFragment : Fragment() {
             (activity as EvaluationActivity?)?.backScreen()
         }
         nextButton.setOnClickListener {
-            (activity as EvaluationActivity?)?.changeScreen()
+            val submitEvaluateRequest=BeginSubmitEvaluateRequest()
+            submitEvaluateRequest.evaluateeRoleId=SharedPreference().getValueString(ConstantKeys.ROLE_ID)?.toInt()
+
+            submitEvaluateRequest.contextualInfo= mutableMapOf("comment" to "Evaluation finished")
+
+
+            (activity as EvaluationActivity?)?.changeScreen(submitRequest = submitEvaluateRequest)
 
         }
 

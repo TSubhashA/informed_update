@@ -14,6 +14,6 @@ data class BeginSubmitEvaluateRequest(
     var evaluateeRoleId: Int? = null,
 
 	@Json(name="contextual_info")
-	var contextualInfo: Map<String,String>? = null
+	var contextualInfo: MutableMap<String,String>? = null
 ) : Parcelable
 

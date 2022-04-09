@@ -76,11 +76,9 @@ class EvaluatequestionsFragment : Fragment(), EvaluationOptionMCQAdapter.CustomL
 
         setData()
 
-        val itemTouch = MyItemTouchHelper(requireContext(), mcqAdapter)
-        val touchList = ItemTouchHelper(itemTouch)
-        touchList.attachToRecyclerView(recyclerView)
-
-
+//        val itemTouch = MyItemTouchHelper(requireContext(), mcqAdapter)
+//        val touchList = ItemTouchHelper(itemTouch)
+//        touchList.attachToRecyclerView(recyclerView)
 
 
         backButton.setOnClickListener {

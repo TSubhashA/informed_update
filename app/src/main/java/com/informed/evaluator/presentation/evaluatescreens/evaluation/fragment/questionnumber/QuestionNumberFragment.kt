@@ -8,23 +8,20 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 import kotlinx.android.synthetic.main.fragment_evaluate_welcome.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [QuestionNumberFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class QuestionNumberFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: QuestionsItem? = null
     private var param2: String? = null
 
@@ -47,6 +44,7 @@ class QuestionNumberFragment : Fragment() {
         val nextButton = view.findViewById(R.id.btn_next) as MaterialButton
         val question_title = view.findViewById(R.id.question_title) as TextView
         val question = view.findViewById(R.id.question) as TextView
+        val textContainer = view.findViewById(R.id.textContainer) as TextInputLayout
 
         question_title.setText(param1?.title)
         question.setText(param1?.description)
@@ -60,7 +58,14 @@ class QuestionNumberFragment : Fragment() {
             (activity as EvaluationActivity?)?.backScreen()
         }
         nextButton.setOnClickListener {
-            (activity as EvaluationActivity?)?.changeScreen()
+            val text=textContainer.editText?.text
+
+            var model: SaveEvaluateRequest?=null
+            model= SaveEvaluateRequest()
+            model.questionId=param1?.id
+            model.numberValue=text
+
+            (activity as EvaluationActivity?)?.changeScreen(saveRequest = model)
         }
 
 

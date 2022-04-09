@@ -11,140 +11,167 @@
         android:layout_height="match_parent"
         android:layout_above="@id/btn_layout"
         android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="1."
-            android:layout_marginTop="@dimen/margin_default_low"
-            android:layout_marginStart="@dimen/margin_default_low"
-            android:layout_marginBottom="@dimen/margin_default_low"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_head_medium"
-            />
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginStart="@dimen/margin_default_size"
+            android:layout_marginEnd="@dimen/margin_default_size"
+            android:orientation="horizontal">
 
-            android:layout_margin="@dimen/margin_default_low"
-            android:text="Amet minim mollit non deserunt ullamco est sit aliqua dolor do met sint ?
-"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_head_medium"
-            />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default_size"
+                android:background="@drawable/box_border_green"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:paddingStart="20dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="4dp"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_head_sub" />
 
+            <TextView
+                android:id="@+id/question_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default_size"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:paddingTop="4dp"
 
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        >
+                android:paddingEnd="20dp"
+                android:paddingBottom="4dp"
+                android:text="Global Assesment"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_head" />
+        </LinearLayout>
 
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-
-            android:text="1"
-            android:gravity="center"
-            android:textColor="@color/radio_btn_text_color_black_white"
-            android:textSize="@dimen/text_size_head"
-            android:background="@drawable/radio_feedback_selector_grey_green"/>
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-android:layout_marginStart="@dimen/margin_default_low"
-            android:text="2"
-            android:gravity="center"
-            android:textColor="@color/radio_btn_text_color_black_white"
-            android:textSize="@dimen/text_size_head"
-            android:background="@drawable/radio_feedback_selector_grey_green"/>
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/margin_default_low"
-            android:text="3"
-            android:gravity="center"
-            android:textColor="@color/radio_btn_text_color_black_white"
-            android:textSize="@dimen/text_size_head"
-            android:background="@drawable/radio_feedback_selector_grey_green"/>
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/margin_default_low"
-            android:text="4"
-            android:gravity="center"
-            android:textColor="@color/radio_btn_text_color_black_white"
-            android:textSize="@dimen/text_size_head"
-            android:background="@drawable/radio_feedback_selector_grey_green"/>
-
-        <RadioButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/margin_default_low"
-            android:text="5"
-            android:gravity="center"
-            android:checked="true"
-            android:textColor="@color/radio_btn_text_color_black_white"
-            android:textSize="@dimen/text_size_head"
-            android:background="@drawable/radio_feedback_selector_grey_green"/>
-
-
-    </RadioGroup>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="30dp"
-        >
         <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default_size"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="20dp"
+            android:text="Resident has appropriate surgical plan based on awareness of patient specific factors (e.g. biometry, pupil size,traum,uveitis)"
+            android:textColor="@color/grey" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_head_small"
-            android:text="Ok"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Great"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_head_small"
-            android:layout_gravity="end"
-            android:gravity="end"/>
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:orientation="vertical">
+
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/radio_feedback_selector_grey_green"-->
+                <!--                    android:button="@null"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text="1"-->
+                <!--                    android:textColor="@color/radio_btn_text_color_black_white"-->
+                <!--                    android:textSize="@dimen/text_size_head" />-->
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/margin_default_low"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/radio_feedback_selector_grey_green"-->
+                <!--                    android:button="@null"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text="2"-->
+                <!--                    android:textColor="@color/radio_btn_text_color_black_white"-->
+                <!--                    android:textSize="@dimen/text_size_head" />-->
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/margin_default_low"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/radio_feedback_selector_grey_green"-->
+                <!--                    android:button="@null"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text="3"-->
+                <!--                    android:textColor="@color/radio_btn_text_color_black_white"-->
+                <!--                    android:textSize="@dimen/text_size_head" />-->
+
+<!--                <RadioButton-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="@dimen/margin_default_low"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/radio_feedback_selector_grey_green"-->
+<!--                    android:button="@null"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="4"-->
+<!--                    android:textColor="@color/radio_btn_text_color_black_white"-->
+<!--                    android:textSize="@dimen/text_size_head" />-->
+
+                <!--                <RadioButton-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="@dimen/margin_default_low"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/radio_feedback_selector_grey_green"-->
+                <!--                    android:button="@null"-->
+                <!--                    android:checked="true"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text="5"-->
+                <!--                    android:textColor="@color/radio_btn_text_color_black_white"-->
+                <!--                    android:textSize="@dimen/text_size_head" />-->
+
+
+            </RadioGroup>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ok"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_head_small" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Great"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_head_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
-
-
-</LinearLayout>
 
     <LinearLayout
         android:id="@+id/btn_layout"

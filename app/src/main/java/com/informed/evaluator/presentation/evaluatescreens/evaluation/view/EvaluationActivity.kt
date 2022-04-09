@@ -22,12 +22,18 @@ import com.informed.evaluator.presentation.evaluatescreens.evaluation.viewmodel.
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.viewmodel.EvaluateQuestionsViewModel
 import com.informed.evaluator.presentation.login.view.SignInActivity
 import com.informed.evaluator.utils.CustomDialogue
+import com.informed.evaluator.utils.CustomProgressDialogue
+import com.informed.trainee.data.model.ResultOf
 import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
 
 
 class EvaluationActivity : BaseActivity() {
 
     lateinit var pager: ViewPager2
+
+    val cpd by lazy {
+        CustomProgressDialogue(this)
+    }
 
     val data by lazy {
         intent.getParcelableExtra<RowsItem>("rowItems")
@@ -41,6 +47,8 @@ class EvaluationActivity : BaseActivity() {
 
         setTopBar()
 
+        observeSubmition()
+
         pager = findViewById<ViewPager2>(R.id.viewPager)
         Log.e(TAG, "onCreate: $data" )
         val adapter = EvaluationPagerAdapter(this, data)
@@ -50,6 +58,33 @@ class EvaluationActivity : BaseActivity() {
         dotsIndicator.setViewPager2(pager)
 
         pager.isUserInputEnabled = false
+    }
+
+    private fun observeSubmition() {
+        vm.submitEvaluationResponse?.observe(this){
+            when(it){
+                is ResultOf.Empty -> Log.e(TAG, "observeSubmition: $it" )
+                is ResultOf.Failed -> {
+                    Log.e(TAG, "observeSubmition: $it" )
+                    moveToEvaluation()
+                }
+                is ResultOf.Failure ->{
+                    Log.e(TAG, "observeSubmition: $it" )
+                    moveToEvaluation()
+                }
+                is ResultOf.Progress -> {
+
+                    if (it.loading)
+                        cpd.show()
+                    else
+                        cpd.dismiss()
+                }
+                is ResultOf.Success -> {
+                    Log.e(TAG, "observeSubmition: $it" )
+                    moveToEvaluation()
+                }
+            }
+        }
     }
 
     private fun setTopBar() {
@@ -86,11 +121,7 @@ class EvaluationActivity : BaseActivity() {
     if (submitRequest!=null)
             submitQuestions(id, submitRequest)
 
-            val intent = Intent(this, SignInActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            finish()
 
-            startActivity(intent)
         } else {
             if (saveRequest!=null)
             saveQuestions(id, saveRequest)
@@ -101,6 +132,14 @@ class EvaluationActivity : BaseActivity() {
         }
 
 
+    }
+
+    fun moveToEvaluation(){
+        val intent = Intent(this, SignInActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        finish()
+
+        startActivity(intent)
     }
 
     private fun submitQuestions(id: Int?, submitRequest: BeginSubmitEvaluateRequest?) {

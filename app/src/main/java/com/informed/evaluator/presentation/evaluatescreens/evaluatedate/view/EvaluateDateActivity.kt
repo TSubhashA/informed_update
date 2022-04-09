@@ -39,7 +39,9 @@ class EvaluateDateActivity : BaseActivity() {
 
             val date = datePicker.date
 
-            conTextInfo?.contextualInfo= mapOf(Constants.ContextInfo.date to date.toString())
+            val addMap= mapOf(Constants.ContextInfo.date to date.toString())
+
+            conTextInfo?.contextualInfo?.putAll(addMap)
 
             intent.putExtra(Constants.ContextInfo.context,conTextInfo)
 

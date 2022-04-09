@@ -1,6 +1,8 @@
 package com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionimagechoice
 
+import android.content.ContentValues
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import com.informed.evaluator.R
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.ChoicesItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionimagechoice.adapter.EvaluationImageChoiceAdapter
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionimagechoice.adapter.MyItemCustomAnimation
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.model.SaveEvaluateRequest
 import com.informed.evaluator.presentation.evaluatescreens.evaluation.view.EvaluationActivity
 
 private const val ARG_PARAM1 = "param1"
@@ -78,9 +82,18 @@ class QuestionImageChoiceFragment : Fragment(), EvaluationImageChoiceAdapter.Cus
             (activity as EvaluationActivity?)?.backScreen()
         }
         nextButton.setOnClickListener {
-//            if (mcqAdapter.extendedCard>-1)
-//            mcqAdapter.commentSave(recyclerView.findViewHolderForAdapterPosition(mcqAdapter.extendedCard) as EvaluationOptionMCQAdapter.ViewHolder)
-            (activity as EvaluationActivity?)?.changeScreen()
+            val selected=adapter.selectedModel
+            Log.e(ContentValues.TAG, "onCreateView: $selected", )
+            var model: SaveEvaluateRequest?=null
+            if (selected!=null)
+            {
+                model= SaveEvaluateRequest()
+                model.questionId=selected.questionId
+                model.choiceId=selected.id
+                if (adapter.commentSaved.length>0)
+                    model.comment=adapter.commentSaved
+            }
+            (activity as EvaluationActivity?)?.changeScreen(saveRequest = model)
         }
 
         return view
@@ -95,7 +108,7 @@ class QuestionImageChoiceFragment : Fragment(), EvaluationImageChoiceAdapter.Cus
             "MelBorne",
             "MelBorne"
         )
-        adapter.setData(list as MutableList<String>)
+        adapter.setData(param1?.choices as MutableList<ChoicesItem?>)
     }
 
     companion object {

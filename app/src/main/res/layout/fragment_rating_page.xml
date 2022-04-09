@@ -64,6 +64,7 @@
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/rating"
       android:layout_marginTop="@dimen/margin_medium"
         android:layout_gravity="center"
         style="?android:attr/ratingBarStyle"

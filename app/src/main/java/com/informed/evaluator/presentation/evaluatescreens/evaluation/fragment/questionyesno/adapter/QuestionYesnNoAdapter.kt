@@ -1,35 +1,33 @@
-package com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionimagechoice.adapter
-
+package com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.questionyesno.adapter
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.*
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputLayout
 import com.informed.evaluator.R
 import com.informed.evaluator.customviews.SlideToActView
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.ChoicesItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.QuestionsItem
+import com.informed.evaluator.presentation.evaluatescreens.evaluation.fragment.evaluatequestion.adapter.EvaluationOptionMCQAdapter
 
-
-class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListener) :
-    RecyclerView.Adapter<EvaluationImageChoiceAdapter.ViewHolder>() {
-
+class QuestionYesnNoAdapter(val context: Context,
+                            val interf: CustomListener,
+                            param1: QuestionsItem?
+) :
+RecyclerView.Adapter<QuestionYesnNoAdapter.ViewHolder>() {
 
     private var data = mutableListOf<ChoicesItem?>()
     var selectedModel: ChoicesItem? =null
@@ -40,16 +38,20 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
     var isExpansion = false
     var isCommentSaved = false
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(data: MutableList<ChoicesItem?>) {
+    val yesRno= arrayListOf<String>("Yes", "No")
 
-        this.data = data
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: List<ChoicesItem?>?) {
+
+        this.data = data as MutableList<ChoicesItem?>
         notifyDataSetChanged()
+
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_question_image_choice_item, parent, false)
+            .inflate(R.layout.yes_no_layout, parent, false)
 
         return ViewHolder(itemView)
     }
@@ -95,10 +97,10 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun onItemLeftSwipe(viewHolder: ViewHolder) {
+    fun onItemLeftSwipe(viewHolder: QuestionYesnNoAdapter.ViewHolder) {
 
-        Log.e(TAG, "onItemLeftSwipe: $extendedCard")
-        Log.e(TAG, "onItemLeftSwipe: ${viewHolder.absoluteAdapterPosition}")
+        Log.e(ContentValues.TAG, "onItemLeftSwipe: $extendedCard")
+        Log.e(ContentValues.TAG, "onItemLeftSwipe: ${viewHolder.absoluteAdapterPosition}")
 
         if (selectedData > -1) {
             val oldSelect = selectedData
@@ -116,7 +118,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
         selectedData = viewHolder.absoluteAdapterPosition
 
 
-//        notifyItemChanged(viewHolder.absoluteAdapterPosition)
+
         viewHolder.updateItem(viewHolder.absoluteAdapterPosition)
 
         notifyItemRangeChanged(0, data.size)
@@ -125,7 +127,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
     @SuppressLint("NotifyDataSetChanged")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val cardView = itemView.findViewById(R.id.card_view) as MaterialCardView
+        val cardView = itemView.findViewById(R.id.question_one) as MaterialCardView
         val optionNumber = itemView.findViewById(R.id.option_no) as TextView
         val optionValue = itemView.findViewById(R.id.option_value) as TextView
         val cancelText = itemView.findViewById(R.id.cancel_comment) as ImageButton
@@ -137,22 +139,17 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
         val comment_saved = itemView.findViewById(R.id.comment_saved) as TextView
         val editText = itemView.findViewById(R.id._edit_text_ll) as TextInputLayout
         val llLayout_comment = itemView.findViewById(R.id.comment_option_one_ll) as LinearLayout
-
-                val image_view = itemView.findViewById(R.id.image_view) as ImageView
+        val llLayout_question = itemView.findViewById(R.id.question_one_ll) as LinearLayout
         val option_no_comment = itemView.findViewById(R.id.option_no_comment) as TextView
-        val topll = itemView.findViewById(R.id.topll) as LinearLayout
+        val question_option_ll = itemView.findViewById(R.id.question_option_ll) as LinearLayout
 
 
         @SuppressLint("ClickableViewAccessibility", "SetTextI18n", "Recycle")
         fun bind(get: ChoicesItem?, position: Int, holder: ViewHolder) {
             updateItem(position)
-            optionNumber.text = (position + 1 + 64).toChar().toString()
-            optionValue.text = get?.label
-            option_no_comment.text = (position + 1 + 64).toChar().toString()
-
-            Glide.with(image_view)
-                .load(get?.media?.toString())
-                .into(image_view)
+            optionNumber.text = yesRno.get(position).first().toString()
+            optionValue.text = yesRno.get(position)
+            option_no_comment.text = (position + 1).toString()
 
             setButtonText()
 
@@ -167,6 +164,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                         view: SlideToActView,
                         threshold: Float
                     ) {
+
                         shimmer.stopShimmer()
                         shimmer.visibility = View.GONE
                     }
@@ -180,11 +178,12 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
 
                     override fun onSlideResetAnimationStarted(view: SlideToActView) {
 
+
                     }
 
                 }
 
-            topll.setOnClickListener {
+            question_option_ll.setOnClickListener {
 
                 if (commentPos == position) {
                     updateSwipe(this)
@@ -192,21 +191,13 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                     if (selectedData == position) {
                         selectedData = -1
                         selectedModel=null
+//                    context.showToast("card clicked")
                         selectedPosition(false)
                         updateItem(position)
 
-                    } else if (extendedCard == position) {
+                    }
 
-//                    updateItem(position)
-//                    extendedCard = -1
-//                    if  (selectedData>-1){
-//                    val oldSelected = selectedData
-//                    selectedData = position
-//                    notifyItemChanged(oldSelected)
-//                    notifyItemChanged(selectedData)
-
-//                    cardView.isChecked = true
-                    } else {
+                    else {
                         setVisiblity(false, position)
 
                         if (commentPos > -1) {
@@ -220,6 +211,8 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                         if (selectedData > -1) {
                             val oldSelected = selectedData
                             selectedData = position
+
+
                             updateItem(oldSelected)
                             notifyItemChanged(oldSelected)
                             updateItem(position)
@@ -229,11 +222,12 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                             selectedData = position
                             selectedPosition(true)
                             updateItem(position)
+
                             notifyItemChanged(position)
                         }
                     }
                 setButtonText()
-
+//                updateItem(position)
             }
 
 
@@ -258,6 +252,9 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                 commentSave(this)
             }
 
+            var lastY = Float.MIN_VALUE
+            var hei = 0
+            var wid = 0
             var relParam: LinearLayout.LayoutParams? = null
             var textParam: LinearLayout.LayoutParams? = null
 
@@ -265,7 +262,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
             slider.onSlideListener = object : SlideToActView.OnSlideingListener {
                 override fun onSlide(view: SlideToActView, threshold: Float, event: MotionEvent) {
                     val per = threshold / slider.width
-                    Log.e(TAG, "onSlide: $per")
+                    Log.e(ContentValues.TAG, "onSlide: $per")
                     shimmer.alpha = 1 - 1.8f * per
                     optionValue.alpha = 1 - 1.3f * per
 
@@ -285,41 +282,47 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
 
                         }
 
+
                     }
+
+
 
                     if (per == 0f)
 //                        llLayout_comment.visibility = View.GONE
                         comment_saved.visibility = View.GONE
-                    Log.e(TAG, "onSlideHeight: ${per * 10}")
+//                    textParam?.height = WRAP_CONTENT
+//                    comment_saved.layoutParams = textParam
+                    Log.e(ContentValues.TAG, "onSlideHeight: ${per * 10}")
 
                 }
             }
 
             slider.onSlideCompleteListener = object : SlideToActView.OnSlideCompleteListener {
                 override fun onSlideComplete(view: SlideToActView) {
+                    cardView.animate().scaleY(1f)
                     optionNumber.animate().translationX(0f)
                     optionNumber.animate().translationY(0f)
                     relParam = LinearLayout.LayoutParams(
-                        MATCH_PARENT,
-                        WRAP_CONTENT
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
                     )
+                    comment_saved.layoutParams=relParam
                     llLayout_comment.layoutParams = relParam
-                    comment_saved.layoutParams = relParam
                     onItemLeftSwipe(this@ViewHolder)
                 }
             }
         }
 
         fun selectedPosition(selectedState: Boolean) {
-
             selectedModel = if (selectedData!=-1)
                 data.get(selectedData)
             else
                 null
 
             if (selectedState) {
-                topll.setBackgroundColor(context.resources.getColor(R.color.purple_6))
-                cardView.setBackgroundColor(context.resources.getColor(R.color.purple_6))
+
+                question_option_ll.setBackgroundColor(context.resources.getColor(R.color.purple_6))
+//                optionValue.setTextColor(context.resources.getColor(R.color.white))
                 if (commentPos == -1) {
                     slider.resetSlider()
                     swipeRelativeLayout.visibility = View.VISIBLE
@@ -327,10 +330,12 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                 } else
                     swipeRelativeLayout.visibility = View.GONE
 
+
             } else {
-                topll.setBackgroundColor(Color.WHITE)
-                cardView.setBackgroundColor(Color.WHITE)
+                question_option_ll.setBackgroundColor(Color.WHITE)
                 swipeRelativeLayout.visibility = View.GONE
+
+//                optionValue.setTextColor(Color.BLACK)
             }
         }
 
@@ -355,14 +360,23 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                 isExpansion = true
 
                 swipeRelativeLayout.visibility = View.GONE
+//                llLayout_comment.alpha=0f
+                question_option_ll.visibility = View.GONE
+                llLayout_comment.visibility = View.VISIBLE
 
-                topll.visibility = GONE
-                llLayout_comment.visibility = VISIBLE
+                val anim = AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
 
+                //                llLayout_comment.alpha=0.0f
                 if (commentPos == position)
                     editText.editText?.setText(commentSaved)
                 else
                     editText.editText?.setText("")
+//
+//                llLayout_comment.animate().alpha(1.0f).setDuration(500).start()
+                llLayout_question.setBackgroundColor(context.resources.getColor(R.color.purple_6))
+
+//                val anim =AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation)
+//                llLayout_comment.layoutAnimation=anim
 
                 showSoftKeyboard(context, editText.editText!!);
             } else {
@@ -379,11 +393,11 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                 } else
                     comment_saved.visibility = View.GONE
 
-//                llLayout_question.setBackgroundColor(Color.WHITE)
+                llLayout_question.setBackgroundColor(Color.WHITE)
                 llLayout_comment.visibility = View.GONE
-                topll.visibility = View.VISIBLE
+                question_option_ll.visibility = View.VISIBLE
                 optionValue.alpha = 1f
-//                optionValue.setTextColor(Color.BLACK)
+
             }
         }
 
@@ -391,6 +405,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
 
     interface CustomListener {
         fun changeBtn(text: String)
+
     }
 
 
@@ -402,6 +417,7 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
                     val keyboard: InputMethodManager =
                         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                     keyboard.showSoftInput(editText, 0)
+
                 }, 500
             )
         } catch (npe: NullPointerException) {
@@ -424,19 +440,29 @@ class EvaluationImageChoiceAdapter(val context: Context, val interf: CustomListe
     fun commentSave(holder: ViewHolder) {
         isExpansion = false
         val textComment = holder.editText.editText?.text.toString()
-        hideKeyboard(context, holder.editText.editText!!)
-        Log.e(TAG, "commentSave: $textComment")
+        hideKeyboard(context,holder.editText.editText!!)
+        Log.e(ContentValues.TAG, "commentSave: $textComment")
         if (textComment.length > 0) {
             commentPos = extendedCard
             commentSaved = textComment
-
         }
         extendedCard = -1
-
 
         notifyItemRangeChanged(0, data.size)
 
     }
 
+
+//    private fun objectAnimatorFLoat(
+//        view: View,
+//        propertyName: String,
+//        startValue: Float,
+//        endValue: Float
+//    ): ObjectAnimator? {
+//        val animator = ObjectAnimator.ofFloat(view, propertyName, startValue, endValue)
+//        animator.duration = 700L
+//        animator.interpolator = AccelerateDecelerateInterpolator()
+//        return animator
+//    }
 
 }
