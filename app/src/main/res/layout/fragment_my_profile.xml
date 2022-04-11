@@ -304,6 +304,7 @@
                         <androidx.appcompat.widget.SwitchCompat
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
+                            android:id="@+id/finger_scan"
                             android:thumb="@drawable/switch_drawable"
                             app:track="@drawable/switch_track_drawable"
 

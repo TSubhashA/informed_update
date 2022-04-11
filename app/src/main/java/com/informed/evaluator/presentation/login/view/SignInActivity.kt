@@ -3,10 +3,15 @@ package com.informed.evaluator.presentation.login.view
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+
 import com.informed.evaluator.R
 import com.informed.evaluator.preference.ConstantKeys
 import com.informed.evaluator.preference.SharedPreference
@@ -25,28 +30,41 @@ import com.wajahatkarim3.easyvalidation.core.view_ktx.minLength
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import kotlinx.android.synthetic.main.activity_signin.*
 
+import java.util.concurrent.Executor
+
 
 class SignInActivity : AppCompatActivity() {
+
+    private lateinit var executor: Executor
+    private lateinit var biometricPrompt: BiometricPrompt
+    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     private val signVM by viewModels<SignInViewModel> { SignInVMFactory() }
     lateinit var prog: CustomProgressDialogue
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.e(TAG, "onCreate: ${SharedPreference().getValueString(ConstantKeys.EMAIL)}" )
+//        Log.e(TAG, "onCreate: ${SharedPreference().getValueString(ConstantKeys.EMAIL)}" )
         if (SharedPreference().getValueString(ConstantKeys.EMAIL)!=null)
             onLoginSucces()
         super.onCreate(savedInstanceState)
 
-
-
         setContentView(R.layout.activity_signin)
         prog = CustomProgressDialogue(this)
 
+        biometricPromt()
+
+//        login_username.editText?.setText("karan@yopmail.com")
+//        login_password.editText?.setText("Test@123")
+
+        if (SharedPreference().getValueBoolien(ConstantKeys.IS_FINGER_ENABLE,false))
+        biometric_finger.visibility= View.VISIBLE
+        else
+            biometric_finger.visibility= View.GONE
 
 
-        login_username.editText?.setText("karan@yopmail.com")
-        login_password.editText?.setText("Test@123")
-
+        btn_biometric_touch.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+        }
 
         btn_signin.setOnClickListener {
 
@@ -69,6 +87,40 @@ class SignInActivity : AppCompatActivity() {
                 )
             )
         }
+    }
+
+    private fun biometricPromt() {
+        executor = ContextCompat.getMainExecutor(this)
+        biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int,
+                                                   errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    showToast(
+                        "Authentication error: $errString")
+
+                }
+
+                override fun onAuthenticationSucceeded(
+                    result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                  showToast(
+                        "Authentication succeeded!")
+
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    showToast( "Authentication failed")
+                }
+            })
+
+
+        promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric login")
+            .setSubtitle("Log in using your biometric credential")
+            .setNegativeButtonText("Use account password")
+            .build()
     }
 
 
@@ -105,7 +157,6 @@ class SignInActivity : AppCompatActivity() {
                 }
                 is ResultOf.Failed -> {
                     it.value as Error2
-
                     showToast(it.value.message)
                 }
             }

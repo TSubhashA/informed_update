@@ -16,6 +16,7 @@ import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.E
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.model.RowsItem
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.viewmodel.EvaluationVMFactory
 import com.informed.evaluator.presentation.evaluatescreens.evaluatestart.viewmodel.EvaluationViewModel
+import com.informed.evaluator.utils.CustomProgressDialogue
 import com.informed.evaluator.utils.showToast
 import com.informed.trainee.data.model.ResultOf
 
@@ -26,14 +27,15 @@ class EvaluateStartActivity : BaseActivity() {
 
     private lateinit var adapter:EvaluateListAdapter
 
-    var fa: Activity? = null
+    lateinit var progBar: CustomProgressDialogue
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evaluate)
         setTopBar()
-        fa=this
-
+        progBar = CustomProgressDialogue(this)
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
          adapter = EvaluateListAdapter(this)
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -65,7 +67,11 @@ class EvaluateStartActivity : BaseActivity() {
                     showToast("Failure")
                     Log.e(TAG, "setData: failure : ${it.message} + ${it.throwable}" )
                 }
-                is ResultOf.Progress -> {showToast("Progress")}
+                is ResultOf.Progress -> {
+//                    showToast("Progress")
+                    if (it.loading) progBar.show() else progBar.dismiss()
+
+                }
                 is ResultOf.Success -> {
                     it.value as EvaluationResponse
                     if (it.value.data?.count!! > 0)

@@ -24,7 +24,8 @@ object NetworkModule {
 
     private val variableUrl="/api/v1/"
 
-    private val baseUrl = "http://34.74.224.155"
+//    private val baseUrl = "http://34.74.224.155"
+    private val baseUrl = "https://staging-api.medevals.org"
 
     private val ngrokUrl=""
 

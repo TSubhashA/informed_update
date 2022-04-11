@@ -244,6 +244,7 @@
         <entry key="app/src/main/res/layout/activity_evaluation.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_evaluation_initiate.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/activity_personal_data.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/activity_signin.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/app_bar.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/custom_dialogue_box.xml" value="0.18" />
         <entry key="app/src/main/res/layout/evaluation_list_row.xml" value="0.11005434782608696" />
@@ -252,6 +253,7 @@
         <entry key="app/src/main/res/layout/fragment_evaluation_finish.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/fragment_evaluator_list.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.11005434782608696" />
+        <entry key="app/src/main/res/layout/fragment_my_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_new_evaluate.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/fragment_question_date.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_question_email.xml" value="0.11005434782608696" />

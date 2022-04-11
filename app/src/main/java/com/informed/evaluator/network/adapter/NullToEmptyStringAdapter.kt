@@ -1,5 +1,6 @@
 package com.informed.evaluator.network.adapter
 
+import androidx.annotation.Nullable
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonQualifier
 import com.squareup.moshi.JsonReader
@@ -19,14 +20,14 @@ class NullToEmptyStringAdapter {
 
     @FromJson
     @NullToEmptyString
-    fun fromJson(reader: JsonReader): String? {
+    fun fromJson(@Nullable reader: String?): String {
 
-        val result = if (reader.peek() === JsonReader.Token.NULL) {
-            reader.nextNull()
-        } else {
-            reader.nextString()
-        }
+//        val result = if (reader.peek() === JsonReader.Token.NULL) {
+//            reader.nextNull()
+//        } else {
+//            reader.nextString()
+//        }
 
-        return result ?: ""
+        return reader ?: ""
     }
 }

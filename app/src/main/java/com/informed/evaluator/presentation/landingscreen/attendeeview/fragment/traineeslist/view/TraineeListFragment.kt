@@ -248,8 +248,11 @@ class TraineeListFragment : Fragment()//, TraineeListAdapter.EventListener
                     requireActivity().showToast("Last Page Reached")
                     Log.e(TAG, "observeTraineeList: $it")
                 }
-                is ResultOf.Failed -> requireActivity().showToast("Failed")
-                is ResultOf.Failure -> requireActivity().showToast("Failure")
+                is ResultOf.Failed -> {
+                    requireActivity().showToast("Failed")
+                    Log.e(TAG, "observeLivedata: failed : $it" )
+                }
+                is ResultOf.Failure -> {requireActivity().showToast("Failure")}
                 is ResultOf.Progress -> {
                     if (scrollFlag) {
                         if (it.loading) bottomProgBar.visibility = VISIBLE else {
@@ -261,7 +264,7 @@ class TraineeListFragment : Fragment()//, TraineeListAdapter.EventListener
                 }
                 is ResultOf.Success -> {
                     it.value as TraineeListResp
-                    requireActivity().showToast("Success")
+//                    requireActivity().showToast("Success")
 
                     setAdapterData(it.value.data?.rows)
                 }

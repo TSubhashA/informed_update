@@ -5,6 +5,8 @@ import com.informed.evaluator.data.remote.ImageUploadService
 import com.informed.evaluator.data.remote.ProfileService
 import com.informed.evaluator.data.remote.SignInService
 import com.informed.evaluator.network.NetworkModule
+import com.informed.evaluator.network.adapter.NullToEmptyString
+import com.informed.evaluator.network.adapter.NullToEmptyStringAdapter
 import com.informed.evaluator.presentation.personaldata.model.ProfileEditRequest
 import com.informed.evaluator.presentation.personaldata.model.ProfileEditResponse
 import com.informed.evaluator.presentation.personaldata.model.SignedUrlResponse
@@ -48,10 +50,7 @@ class ProfileRepo(val prof: ProfileService):IProfileRepo {
             .build()
 
         val urlUpdated=url.replace(signedBaseUrl,"")
-
-
         val uploadService=retrofit.create(ImageUploadService::class.java)
-
         val response=uploadService.uploading(urlUpdated,content,part)
         emit(response)
 

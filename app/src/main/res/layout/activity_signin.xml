@@ -116,6 +116,8 @@
             android:layout_height="fill_parent"
             android:layout_marginBottom="@dimen/margin_medium"
             android:gravity="center"
+            android:id="@+id/biometric_finger"
+            android:visibility="gone"
             android:orientation="vertical">
 
             <LinearLayout

@@ -162,7 +162,8 @@ class NewEvaluateFragment : Fragment() {
                     requireActivity().showToast("Last Page Reached")
                     Log.e(ContentValues.TAG, "observeTraineeList: $it")
                 }
-                is ResultOf.Failed -> {requireActivity().showToast("Failed")
+                is ResultOf.Failed -> {
+                    requireActivity().showToast("Failed")
                     Log.e(TAG, "observeLivedata: Failed : ${it.value.toString()}" )
                 }
                 is ResultOf.Failure -> {
@@ -181,7 +182,7 @@ class NewEvaluateFragment : Fragment() {
                 }
                 is ResultOf.Success -> {
                     it.value as AttendingListResp
-                    requireActivity().showToast("Success")
+//                    requireActivity().showToast("Success")
                     setResponseData(
                         it.value.data?.rows as List<RowsItem>
                     )

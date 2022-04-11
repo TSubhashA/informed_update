@@ -13,6 +13,7 @@ class ConstantKeys {
         val USER_ROLE="user_role"
         val ROLE_ID="role_id"
         val IS_ATTENDEE="is_attendee_active"
+        val IS_FINGER_ENABLE="is_finger_enabled"
 
     }
 
