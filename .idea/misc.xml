@@ -227,6 +227,7 @@
         <entry key="..\:/CognitiveCloud/InforMed/app/src/main/res/menu/search_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/CognitiveCloud/InforMed/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1125" />
         <entry key="..\:/CognitiveCloud/InforMed/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1125" />
+        <entry key="app/src/main/res/drawable/ic_cancel_24.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_swipe.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_swipe_rotate.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_button.xml" value="0.1555" />
@@ -271,6 +272,7 @@
         <entry key="app/src/main/res/layout/fragment_trainee_list.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/header_data.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/layout_question_image_choice_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/no_access_dialogue.xml" value="0.18" />
         <entry key="app/src/main/res/layout/questionair_options_list_item.xml" value="0.2" />
         <entry key="app/src/main/res/layout/review_view.xml" value="0.11005434782608696" />
         <entry key="app/src/main/res/layout/saved_draft_layout_item.xml" value="0.25" />

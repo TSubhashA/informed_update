@@ -1,9 +1,7 @@
 package com.informed.evaluator.presentation.login.view
 
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-
 import com.informed.evaluator.R
 import com.informed.evaluator.preference.ConstantKeys
 import com.informed.evaluator.preference.SharedPreference
@@ -22,6 +19,7 @@ import com.informed.evaluator.presentation.login.model.SignInRequest
 import com.informed.evaluator.presentation.login.viewmodel.SignInVMFactory
 import com.informed.evaluator.presentation.login.viewmodel.SignInViewModel
 import com.informed.evaluator.utils.CustomProgressDialogue
+import com.informed.evaluator.utils.NoAccessDialogue
 import com.informed.evaluator.utils.isValidEmail
 import com.informed.evaluator.utils.showToast
 import com.informed.trainee.data.model.Error2
@@ -29,7 +27,6 @@ import com.informed.trainee.data.model.ResultOf
 import com.wajahatkarim3.easyvalidation.core.view_ktx.minLength
 import com.wajahatkarim3.easyvalidation.core.view_ktx.nonEmpty
 import kotlinx.android.synthetic.main.activity_signin.*
-
 import java.util.concurrent.Executor
 
 
@@ -44,7 +41,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 //        Log.e(TAG, "onCreate: ${SharedPreference().getValueString(ConstantKeys.EMAIL)}" )
-        if (SharedPreference().getValueString(ConstantKeys.EMAIL)!=null)
+        if (SharedPreference().getValueString(ConstantKeys.EMAIL) != null)
             onLoginSucces()
         super.onCreate(savedInstanceState)
 
@@ -56,10 +53,10 @@ class SignInActivity : AppCompatActivity() {
 //        login_username.editText?.setText("karan@yopmail.com")
 //        login_password.editText?.setText("Test@123")
 
-        if (SharedPreference().getValueBoolien(ConstantKeys.IS_FINGER_ENABLE,false))
-        biometric_finger.visibility= View.VISIBLE
+        if (SharedPreference().getValueBoolien(ConstantKeys.IS_FINGER_ENABLE, false))
+            biometric_finger.visibility = View.VISIBLE
         else
-            biometric_finger.visibility= View.GONE
+            biometric_finger.visibility = View.GONE
 
 
         btn_biometric_touch.setOnClickListener {
@@ -93,25 +90,30 @@ class SignInActivity : AppCompatActivity() {
         executor = ContextCompat.getMainExecutor(this)
         biometricPrompt = BiometricPrompt(this, executor,
             object : BiometricPrompt.AuthenticationCallback() {
-                override fun onAuthenticationError(errorCode: Int,
-                                                   errString: CharSequence) {
+                override fun onAuthenticationError(
+                    errorCode: Int,
+                    errString: CharSequence
+                ) {
                     super.onAuthenticationError(errorCode, errString)
                     showToast(
-                        "Authentication error: $errString")
+                        "Authentication error: $errString"
+                    )
 
                 }
 
                 override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult) {
+                    result: BiometricPrompt.AuthenticationResult
+                ) {
                     super.onAuthenticationSucceeded(result)
-                  showToast(
-                        "Authentication succeeded!")
+                    showToast(
+                        "Authentication succeeded!"
+                    )
 
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    showToast( "Authentication failed")
+                    showToast("Authentication failed")
                 }
             })
 
@@ -125,11 +127,25 @@ class SignInActivity : AppCompatActivity() {
 
 
     private fun onLoginSucces() {
-        if (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE,false))
-            startActivity(Intent(this, AttendeeLandingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-        else //if (SharedPreference().getValueString(ConstantKeys.USER_ROLE)=="trainee")
-            startActivity(Intent(this, TraineeLandingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-        finish()
+        if (SharedPreference().getValueBoolien(ConstantKeys.IS_ATTENDEE, false)) {
+            startActivity(
+                Intent(
+                    this,
+                    AttendeeLandingActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
+            finish()
+        } else if (SharedPreference().getValueString(ConstantKeys.USER_ROLE) == "trainee") {
+            startActivity(
+                Intent(
+                    this,
+                    TraineeLandingActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
+            finish()
+        } else {
+            NoAccessDialogue(this)
+        }
     }
 
     private fun observeSignIn() {
